@@ -1,0 +1,104 @@
+// Place all the styles related to the main controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+html body {
+  background: url("http://localhost:3000/img/background.jpg") no-repeat fixed 0 0;
+  background-size: cover;
+  width: 99%;
+}
+
+.shadow {
+  border-bottom: 1px solid #e1e8ed;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  min-height: 45px !important;
+}
+
+.icon_bird {
+  margin: 11px 0 0 10px;
+  height: 23px;
+  width: 23px;
+}
+
+.nopadding {
+  padding: 0 !important;
+}
+
+
+.nomargin {
+  margin: 0 !important;
+}
+
+.signin .defaultmargin {
+  margin-top: 0px;
+  margin-bottom: 5px;
+}
+
+.content {
+  margin-top: 60px;
+}
+
+.info{
+  color: white;
+}
+
+.forgot {
+  font-size: 12px;
+  padding: 3px;
+}
+
+.signin {
+  margin-top: 0px;
+  padding: 10px !important;
+}
+
+.signup h4 {
+  border-bottom: 1px solid #e1e8ed;
+  display: block;
+  font-size: 16px;
+  padding: 10px 12px;
+}
+
+.right {
+  float: right;
+}
+
+.left {
+  float: left;
+}
+
+.background-companion-tweets {
+  margin-top: 130px;
+}
+
+.tweet-username, .tweet-time {
+  color: white;
+  font-size: 13px;
+  text-decoration: underline;
+}
+
+.tweet-text {
+  color: white;
+  font-size: 14px;
+}
+
+.companion-tweet .text p a {
+  color: white;
+}
+
+.footer {
+  margin-top: 120px;
+  color: white;
+  text-align: center;
+  display: inline-block;
+  font-size: 11px;
+//  width: 100%;
+}
+
+.footer ul li {
+  list-style: none;
+}
+
+.footer ul li a {
+  color: white;
+}
