@@ -26,21 +26,22 @@
         <div class="col-md-10">
           <div class="panel panel-default">
             <div class="panel-body nopadding">
-              <form class="signin">
-                <div class="form-group col-md-12 nopadding">
-                  <input type="email" class="form-control" placeholder="Phone, email or username">
-                </div>
-                <div class="form-group col-md-9 nopadding nomargin">
-                  <input type="password" class="form-control" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary" style="margin-left: 2px">Sign in</button>
-                <div class="checkbox col-md-12 forgot nomargin">
-                  <label>
-                    <input type="checkbox">Remember me -
-                  </label>
-                  <a class=​"forgot" href=​"#">​Forgot password?​</a>
-                </div>
-              </form>
+              <%= form_for(resource, html: {class: 'signin'}, as: resource_name, url: session_path(resource_name)) do |f| %>
+                  <div class="form-group col-md-12 nopadding">
+                    <%= f.email_field :email, autofocus: true,
+                                      class: 'form-control', placeholder: 'Phone, email or username' %>
+                  </div>
+                  <div class="form-group col-md-9 nopadding nomargin" style="margin-right: 3px">
+                    <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'Password' %>
+                  </div>
+                  <%= f.submit 'Sign in', class: 'btn btn-primary fixmarginbtn' %>
+                  <% if devise_mapping.rememberable? -%>
+                      <div class="checkbox col-md-12 forgot nomargin">
+                        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+                        <a class=​"forgot" href=​"#"> - ​Forgot password?​</a>
+                      </div>
+                  <% end %>
+              <% end %>
             </div>
           </div>
         </div>
@@ -55,21 +56,21 @@
               <h4>
                 <strong>New to Twitter?</strong> Sign up
               </h4>
-
-              <form class="signin">
-                <div class="form-group col-md-12 nopadding defaultmargin">
-                  <input type="email" class="form-control" placeholder="Full name">
-                </div>
-                <div class="form-group col-md-12 nopadding defaultmargin">
-                  <input type="email" class="form-control" placeholder="Email">
-                </div>
-                <div class="form-group col-md-12 nopadding defaultmargin">
-                  <input type="email" class="form-control" placeholder="Password">
-                </div>
-                <div class="form-group col-md-12 nopadding">
-                  <button type="button" class="btn btn-warning right">Sign up for Twitter</button>
-                </div>
-              </form>
+              <%= form_for(resource, html: {class: 'signin'}, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                  <div class="form-group col-md-12 nopadding defaultmargin">
+                    <% f.text_field :fullname, autofocus: true, placeholder: 'Full name', class: 'form-control'%>
+                    <input type="email" class="form-control" placeholder="Full name">
+                  </div>
+                  <div class="form-group col-md-12 nopadding defaultmargin">
+                    <%= f.email_field :email, autofocus: true, placeholder: 'Email', class: 'form-control' %>
+                  </div>
+                  <div class="form-group col-md-12 nopadding defaultmargin">
+                    <%= f.password_field :password, autocomplete: 'off', placeholder: 'Password', class: 'form-control' %>
+                  </div>
+                  <div class="form-group col-md-12 nopadding">
+                    <%= f.submit 'Sign up for Twitter', class: 'btn btn-warning right'%>
+                  </div>
+              <% end %>
             </div>
           </div>
         </div>

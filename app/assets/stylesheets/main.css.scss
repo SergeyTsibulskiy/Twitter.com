@@ -24,9 +24,12 @@ html body {
   padding: 0 !important;
 }
 
-
 .nomargin {
   margin: 0 !important;
+}
+
+.fixmarginbtn {
+  margin-left: 2px;
 }
 
 .signin .defaultmargin {
@@ -44,7 +47,13 @@ html body {
 
 .forgot {
   font-size: 12px;
-  padding: 3px;
+  padding-top: 3px;
+  padding-left: 20px !important;
+}
+
+.checkbox label {
+  color: #8899a6;
+  padding-left: 0px !important;
 }
 
 .signin {
@@ -65,6 +74,25 @@ html body {
 
 .left {
   float: left;
+}
+
+.center {
+  margin-left: 50%;
+  margin-right: 50%;
+  min-width: 100%;
+}
+
+small {
+  font-size: 12px;
+}
+
+.language {
+  padding: 10px;
+}
+
+.language a {
+  color: #66757f;
+  text-decoration: none;
 }
 
 .background-companion-tweets {
