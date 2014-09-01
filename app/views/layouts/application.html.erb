@@ -10,47 +10,138 @@
 
 <div class="navbar navbar-default navbar-fixed-top shadow">
   <div class="container">
-    <div class="navbar-header">
-      <img class="icon_bird" src="img/twitter_bird_icon.png">
-    </div>
-    <div class="dropdown right language">
-      <a data-toggle="dropdown" href="#"><small>Language:</small> English <b class="caret"></b></a>
+    <% if user_signed_in? %>
 
-      <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
-        <li><a href="?lang=id" data-lang-code="id" title="Indonesian" class="js-language-link js-tooltip">Bahasa Indonesia</a></li>
-        <li><a href="?lang=msa" data-lang-code="msa" title="Malay" class="js-language-link js-tooltip">Bahasa Melayu</a></li>
-        <li><a href="?lang=cs" data-lang-code="cs" title="Czech" class="js-language-link js-tooltip">Čeština</a></li>
-        <li><a href="?lang=da" data-lang-code="da" title="Danish" class="js-language-link js-tooltip">Dansk</a></li>
-        <li><a href="?lang=de" data-lang-code="de" title="German" class="js-language-link js-tooltip">Deutsch</a></li>
-        <li><a href="?lang=en-gb" data-lang-code="en-gb" title="English UK" class="js-language-link js-tooltip">EnglishUK</a></li>
-        <li><a href="?lang=es" data-lang-code="es" title="Spanish" class="js-language-link js-tooltip">Español</a></li>
-        <li><a href="?lang=fil" data-lang-code="fil" title="Filipino" class="js-language-link js-tooltip">Filipino</a></li>
-        <li><a href="?lang=fr" data-lang-code="fr" title="French" class="js-language-link js-tooltip">français</a></li>
-        <li><a href="?lang=it" data-lang-code="it" title="Italian" class="js-language-link js-tooltip">Italiano</a></li>
-        <li><a href="?lang=hu" data-lang-code="hu" title="Hungarian" class="js-language-link js-tooltip">Magyar</a></li>
-        <li><a href="?lang=nl" data-lang-code="nl" title="Dutch" class="js-language-link js-tooltip">Nederlands</a></li>
-        <li><a href="?lang=no" data-lang-code="no" title="Norwegian" class="js-language-link js-tooltip">Norsk</a></li>
-        <li><a href="?lang=pl" data-lang-code="pl" title="Polish" class="js-language-link js-tooltip">Polski</a></li>
-        <li><a href="?lang=pt" data-lang-code="pt" title="Portuguese" class="js-language-link js-tooltip">Português</a></li>
-        <li><a href="?lang=ro" data-lang-code="ro" title="Romanian" class="js-language-link js-tooltip">română</a></li>
-        <li><a href="?lang=fi" data-lang-code="fi" title="Finnish" class="js-language-link js-tooltip">Suomi</a></li>
-        <li><a href="?lang=sv" data-lang-code="sv" title="Swedish" class="js-language-link js-tooltip">Svenska</a></li>
-        <li><a href="?lang=vi" data-lang-code="vi" title="Vietnamese" class="js-language-link js-tooltip">Tiếng Việt</a></li>
-        <li><a href="?lang=tr" data-lang-code="tr" title="Turkish" class="js-language-link js-tooltip">Türkçe</a></li>
-        <li><a href="?lang=ru" data-lang-code="ru" title="Russian" class="js-language-link js-tooltip">Русский</a></li>
-        <li><a href="?lang=uk" data-lang-code="uk" title="Ukrainian" class="js-language-link js-tooltip">Українська мова</a></li>
-        <li><a href="?lang=he" data-lang-code="he" title="Hebrew" class="js-language-link js-tooltip">עִבְרִית</a></li>
-        <li><a href="?lang=ar" data-lang-code="ar" title="Arabic" class="js-language-link js-tooltip">العربية</a></li>
-        <li><a href="?lang=fa" data-lang-code="fa" title="Farsi" class="js-language-link js-tooltip">فارسی</a></li>
-        <li><a href="?lang=hi" data-lang-code="hi" title="Hindi" class="js-language-link js-tooltip">हिन्दी</a></li>
-        <li><a href="?lang=bn" data-lang-code="bn" title="Bengali" class="js-language-link js-tooltip">বাংলা</a></li>
-        <li><a href="?lang=th" data-lang-code="th" title="Thai" class="js-language-link js-tooltip">ภาษาไทย</a></li>
-        <li><a href="?lang=ko" data-lang-code="ko" title="Korean" class="js-language-link js-tooltip">한국어</a></li>
-        <li><a href="?lang=ja" data-lang-code="ja" title="Japanese" class="js-language-link js-tooltip">日本語</a></li>
-        <li><a href="?lang=zh-cn" data-lang-code="zh-cn" title="Simplified Chinese" class="js-language-link js-tooltip">简体中文</a></li>
-        <li><a href="?lang=zh-tw" data-lang-code="zh-tw" title="Traditional Chinese" class="js-language-link js-tooltip">繁體中文</a></li>
-      </ul>
-    </div>
+        <div class="left" role="navigation">
+          <ul class="list-inline">
+            <li class="" data-global-action="home">
+              <a class="" data-placement="bottom" href="/" data-component-term="home_nav" data-nav="home">
+                <span class="icon iconHome">Home</span>
+              </a>
+            </li>
+            <li class="people notifications" data-global-action="connect">
+              <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="/i/notifications"
+                 data-component-term="connect_nav" data-nav="connect">
+                <span class="icon iconDiscover">Notification</span>
+                <!--<span class="count">-->
+                <!--<span class="count-inner">0</span>-->
+                <!--</span>-->
+              </a>
+            </li>
+            <li class="topics" data-global-action="discover">
+              <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="/i/discover"
+                 data-component-term="discover_nav" data-nav="discover">
+                <span class="icon iconDiscover">Discover</span>
+              </a>
+            </li>
+            <li class="profile" data-global-action="profile">
+              <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="/seruy1993"
+                 data-component-term="profile_nav" data-nav="profile">
+                <span class="icon iconProfile">Me</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <span class="icon iconBird"></span>
+
+        <form class="search" action="/search" id="global-nav-search">
+          <input type="text" id="search-query" placeholder="Поиск в Твиттере"
+                 name="q" autocomplete="off" spellcheck="false">
+
+          <div class="search-icon" onclick="$('#global-nav-search').submit();"></div>
+        </form>
+
+        <ul class="list-inline">
+          <li>
+            <span class="icon iconSetting" data-toggle="tooltip" data-placement="bottom" title="Личное сообщения"></span>
+          </li>
+          <li>
+            <div class="dropdown">
+              <a class="icon iconSetting" id="dropdownMenu1" data-toggle="dropdown">
+              </a>
+              <ul class="dropdown-menu" style="margin-top: 50px" role="menu" aria-labelledby="dropdownMenu1">
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Lists</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Help</a></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Keyboard shortcuts</a></li>
+                <li role="presentation" class="divider"></li>
+                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Settings</a></li>
+                <li><%= link_to 'Log out', destroy_user_session_path, :method => :delete %></li>
+              </ul>
+            </div>
+          </li>
+
+          <li>
+            <button class="btn" data-toggle="modal" onclick="showAllert()">
+              <span class="Icon Icon--tweet Icon--large"></span>
+              <span class="visuallyhidden">Compose new Tweet</span>
+            </button>
+          </li>
+        </ul>
+
+        <!--<%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>-->
+        <!--<%= (current_user.email if current_user) || ' ' %>-->
+    <% else %>
+        <div class="navbar-header">
+          <img class="icon_bird" src="img/iconBird.png">
+        </div>
+        <div class="dropdown right language">
+          <a data-toggle="dropdown" href="#">
+            <small>Language:</small>
+            English <b class="caret"></b></a>
+
+          <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
+            <li><a href="?lang=id" data-lang-code="id" title="Indonesian" class="js-language-link js-tooltip">Bahasa
+              Indonesia</a></li>
+            <li><a href="?lang=msa" data-lang-code="msa" title="Malay" class="js-language-link js-tooltip">Bahasa
+              Melayu</a>
+            </li>
+            <li><a href="?lang=cs" data-lang-code="cs" title="Czech" class="js-language-link js-tooltip">Čeština</a>
+            </li>
+            <li><a href="?lang=da" data-lang-code="da" title="Danish" class="js-language-link js-tooltip">Dansk</a></li>
+            <li><a href="?lang=de" data-lang-code="de" title="German" class="js-language-link js-tooltip">Deutsch</a>
+            </li>
+            <li>
+              <a href="?lang=en-gb" data-lang-code="en-gb" title="English UK" class="js-language-link js-tooltip">EnglishUK</a>
+            </li>
+            <li><a href="?lang=es" data-lang-code="es" title="Spanish" class="js-language-link js-tooltip">Español</a>
+            </li>
+            <li>
+              <a href="?lang=fil" data-lang-code="fil" title="Filipino" class="js-language-link js-tooltip">Filipino</a>
+            </li>
+            <li><a href="?lang=fr" data-lang-code="fr" title="French" class="js-language-link js-tooltip">français</a>
+            </li>
+            <li><a href="?lang=it" data-lang-code="it" title="Italian" class="js-language-link js-tooltip">Italiano</a>
+            </li>
+            <li><a href="?lang=hu" data-lang-code="hu" title="Hungarian" class="js-language-link js-tooltip">Magyar</a>
+            </li>
+            <li><a href="?lang=nl" data-lang-code="nl" title="Dutch" class="js-language-link js-tooltip">Nederlands</a>
+            </li>
+            <li><a href="?lang=no" data-lang-code="no" title="Norwegian" class="js-language-link js-tooltip">Norsk</a>
+            </li>
+            <li><a href="?lang=pl" data-lang-code="pl" title="Polish" class="js-language-link js-tooltip">Polski</a>
+            </li>
+            <li>
+              <a href="?lang=pt" data-lang-code="pt" title="Portuguese" class="js-language-link js-tooltip">Português</a>
+            </li>
+            <li><a href="?lang=ro" data-lang-code="ro" title="Romanian" class="js-language-link js-tooltip">română</a>
+            </li>
+            <li><a href="?lang=fi" data-lang-code="fi" title="Finnish" class="js-language-link js-tooltip">Suomi</a>
+            </li>
+            <li><a href="?lang=sv" data-lang-code="sv" title="Swedish" class="js-language-link js-tooltip">Svenska</a>
+            </li>
+            <li><a href="?lang=vi" data-lang-code="vi" title="Vietnamese" class="js-language-link js-tooltip">Tiếng
+              Việt</a>
+            </li>
+            <li><a href="?lang=tr" data-lang-code="tr" title="Turkish" class="js-language-link js-tooltip">Türkçe</a>
+            </li>
+            <li><a href="?lang=ru" data-lang-code="ru" title="Russian" class="js-language-link js-tooltip">Русский</a>
+            </li>
+            <li><a href="?lang=uk" data-lang-code="uk" title="Ukrainian" class="js-language-link js-tooltip">Українська
+              мова</a></li>
+          </ul>
+        </div>
+    <% end %>
   </div>
 </div>
 
@@ -91,5 +182,14 @@
 <!-- Placed at the end of the document so the pages load faster -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="../../dist/js/bootstrap.min.js"></script>
+<script>
+  function showAllert(){
+      BootstrapDialog.show({
+          title: 'Draggable Dialog',
+          message: 'Your most favorite fruit: <textarea type="text" class="form-control">',
+          draggable: true
+      });
+  }
+</script>
 </body>
 </html>

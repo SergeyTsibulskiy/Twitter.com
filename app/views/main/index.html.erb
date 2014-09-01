@@ -58,8 +58,8 @@
               </h4>
               <%= form_for(resource, html: {class: 'signin'}, as: resource_name, url: registration_path(resource_name)) do |f| %>
                   <div class="form-group col-md-12 nopadding defaultmargin">
-                    <% f.text_field :fullname, autofocus: true, placeholder: 'Full name', class: 'form-control'%>
-                    <input type="email" class="form-control" placeholder="Full name">
+                    <%= f.text_field :fullname, autofocus: true, autocomplete: 'on',
+                                     placeholder: 'Full name', class: 'form-control' %>
                   </div>
                   <div class="form-group col-md-12 nopadding defaultmargin">
                     <%= f.email_field :email, autofocus: true, placeholder: 'Email', class: 'form-control' %>

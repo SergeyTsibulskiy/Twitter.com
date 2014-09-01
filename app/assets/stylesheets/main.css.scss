@@ -14,10 +14,137 @@ html body {
   min-height: 45px !important;
 }
 
+.icon {
+  float: left;
+  margin: 11px 0 0 10px;
+  width: 23px;
+  height: 23px;
+}
+
+.iconHome {
+  background: url("http://localhost:3000/img/iconHome.png") no-repeat;
+  padding-left: 30px;
+  width: auto;
+}
+
+.iconHome:hover {
+  background: url("http://localhost:3000/img/iconHomeH.png") no-repeat;
+}
+
+.iconDiscover {
+  background: url("http://localhost:3000/img/iconDiscover.png") no-repeat;
+  background-position-y: 1px;
+  padding-left: 30px;
+  width: auto;
+}
+
+.iconDiscover:hover {
+  background: url("http://localhost:3000/img/iconDiscoverH.png") no-repeat;
+}
+
+.iconProfile {
+  background: url("http://localhost:3000/img/iconProfile.png") no-repeat;
+  background-position-y: -2px;
+  padding-left: 30px;
+  width: auto;
+}
+.iconProfile:hover {
+  background: url("http://localhost:3000/img/iconProfileH.png") no-repeat;
+}
+
+.iconBird {
+  background: url("http://localhost:3000/img/iconBird.png") no-repeat;
+  background-size: contain;
+  margin-left: 10%;
+  margin-right: 10%;
+  float: left;
+}
+
+.iconSetting {
+  background: url("http://localhost:3000/img/iconSetting.png") no-repeat;
+  background-position-y: -2px;
+  padding-left: 30px;
+  width: auto;
+}
+
+.iconSetting:hover{
+  background: url("http://localhost:3000/img/iconSettingH.png") no-repeat;
+}
+
 .icon_bird {
   margin: 11px 0 0 10px;
   height: 23px;
   width: 23px;
+}
+
+.search {
+  width: 220px;
+  margin-top: 10px;
+  float: left;
+}
+
+.search input {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 32px;
+  padding: 5px 27px 6px 12px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  background-color: #66757f;
+  border: 0;
+  border-radius: 21px;
+  transition: all .2s ease-in-out;
+  opacity: .6;
+}
+
+::-webkit-input-placeholder {
+  color:    #fff;
+}
+
+:-moz-placeholder {
+  color:    #fff;
+  opacity:  1;
+}
+
+::-moz-placeholder {
+  color:    #fff;
+  opacity:  1;
+}
+
+:-ms-input-placeholder {
+  color:    #fff;
+}
+
+.search input:focus {
+  display: block;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  height: 32px;
+  padding: 5px 27px 6px 12px;
+  font-size: 12px;
+  line-height: 1;
+  color: #fff;
+  background-color: #313c46;
+  border: 0;
+  border-radius: 21px;
+  transition: all .2s ease-in-out;
+  opacity: .6;
+  outline: 0;
+}
+
+.search-icon {
+  background: url("http://localhost:3000/img/iconFind.png") no-repeat;
+  position: absolute;
+  top: 20px;
+  margin-left: 190px;
+  display: block;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
 }
 
 .nopadding {
@@ -129,4 +256,8 @@ small {
 
 .footer ul li a {
   color: white;
+}
+
+.bootstrap-dialog .modal-header.bootstrap-dialog-draggable {
+  cursor: move;
 }
