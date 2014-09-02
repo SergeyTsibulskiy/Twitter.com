@@ -1,3 +1,64 @@
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html body{
+  background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
+}
+
+.tweetsHead {
+  border: 1px solid #e1e8ed;
+  border-bottom: 1px solid #e1e8ed;
+  border-radius: 6px 6px 0 0;
+  background-clip: padding-box;
+  background-color: white;
+}
+
+.tweetsHead h2 {
+  color: #66757f;
+  font-size: 22px;
+  font-weight: 300;
+  line-height: 22px;
+}
+
+.mainProfile .head {
+  background-color: #0083b3;
+  border: 0px solid #e1e8ed;
+  border-radius: 6px 6px 0 0;
+  background-clip: padding-box;
+  margin-top: -1px;
+  margin-left: -1px;
+  height: 90px;
+  width: 101%;
+}
+
+.content {
+  background-color: white;
+  padding: 15px;
+  margin-top: 0;
+}
+
+.tweet {
+  border-bottom: 1px solid #e1e8ed;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.mainProfile {
+  border: 1px solid #e1e8ed;
+  background: #FFF;
+  border-radius: 6px;
+  padding: 10px;
+}
+
+.mainProfile .main {
+  padding: 10px;
+  background-color: white;
+  height: 100px;
+}
+
+.mainProfile .newTweet {
+  border-color: #BFE0EC !important;
+  background-color: #E5F2F7 !important;
+  padding: 10px;
+}
