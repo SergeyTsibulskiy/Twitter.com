@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get 'main/index'
+  root 'main#index'
 
   devise_for :users, :controllers => {:registrations => 'registrations'}
 
-  root 'main#index'
+  get '/:user_name' => 'users#profile'
 
   get 'users/profile'
 

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def profile
-    @current_user = current_user
+    @user = User.find_by_fullname(params[:user_name])
   end
 
   # def configure_permitted_parameters
