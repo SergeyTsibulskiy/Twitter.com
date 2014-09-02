@@ -3,7 +3,11 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 html body{
+//  background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
+}
+.global {
   background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
+  margin: 0;
 }
 
 .tweetsHead {
@@ -32,7 +36,7 @@ html body{
   width: 101%;
 }
 
-.content {
+.mainTweets .content {
   background-color: white;
   padding: 15px;
   margin-top: 0;
