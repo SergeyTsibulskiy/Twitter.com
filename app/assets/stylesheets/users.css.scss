@@ -5,6 +5,11 @@
 html body{
 //  background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
 }
+
+textarea.no-expand {
+  resize: none;
+}
+
 .global {
   background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
   margin-top: -17px;

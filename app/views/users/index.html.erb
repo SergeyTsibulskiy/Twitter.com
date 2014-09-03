@@ -38,17 +38,17 @@
       </div>
 
       <div class="newTweet">
-        <div class="form-group">
-          <!--<input type="text" class="form-control">-->
-          <textarea class="form-control" rows="1" id="taForTweet" onfocus="addRowsTA()"></textarea>
-        </div>
+        <%= form_tag 'addTweet', :class => 'form-signin form-horizontal' do %>
+            <div class="form-group">
+              <div class="col-md-12">
+                <%= text_area :tweet, params[:tweet], class: 'form-control', rows: '1', id: 'taForTweet'%>
+              </div>
+            </div>
+            <%= submit_tag 'addTweet', class: 'btn btn-primary col-sm-offset-4' %>
+        <% end %>
       </div>
-
     </div>
 
-    <!--<div class="mainTwends ">-->
-    <!--<span>Twends</span>-->
-    <!--</div>-->
 
     <div class="mainTweets col-md-6">
       <div class="tweetsHead col-md-12">
@@ -56,10 +56,13 @@
       </div>
 
       <div class="content col-md-12">
-        <div class="tweet">Content</div>
-        <div class="tweet">Content</div>
-        <div class="tweet">Content</div>
-        <div class="tweet">Content</div>
+        <% @tweets.each do |tweet| %>
+            <div class="tweet"><%= tweet.tweet %>
+              <span>(<%= @current_user.fullname %>)</span>
+              <%= hidden_field_tag :user_id, tweet.user_id %>
+              <a class="del" style="float: right" id=<%= tweet.id %>>del</a>
+            </div>
+        <% end %>
       </div>
 
 
@@ -67,9 +70,9 @@
 
     <div class="follow col-md-3">
       <h3>Who to follow</h3>
-
+      <%= hidden_field_tag :current_user_id, current_user.id %>
       <div class="col-md-12 content">
-        <button class="btn btn-default">
+        <button class="btn btn-default" id="8">
           <span class="visuallyhidden">user1</span>
         </button>
       </div>
@@ -89,18 +92,47 @@
   </div>
 </div>
 <script>
-//    $(document).ready(function () {
-        $('#taForTweet').click(function () {
+    $(document).ready(function () {
+
+        $('#taForTweet').addClass('no-expand');
+
+        $('#taForTweet').focusin(function () {
             $('#taForTweet').attr('rows', '4')
         });
+        $('#taForTweet').blur(function() {
+            $('#taForTweet').attr('rows', '1')
+        });
 
-        function addRowsTA() {
-            $('#taForTweet').attr('rows', '4')
-        }
 
-//        var status = $('#taForTweet').is(":focus");
+        $('a.del').click(function () {
+            var id_tweet = $(this).attr('id');
 
-//    })
+            $.ajax({
+                url: "http://localhost:3000/delTweet",
+                method: "DELETE",
+                data: {params: id_tweet},
+                complete: function (msg) {
+                    if (msg.responseText == 'deleted') {
+                        $(location).attr('href', $(location).attr('href'));
+                    }
+                }
+            })
+        });
+
+        $('button.btn-default').click(function () {
+            var user_id = $('#current_user_id').val();
+            var following_id = $(this).attr('id');
+            $.ajax({
+                url: "http://localhost:3000/follow",
+                method: "POST",
+                data: {user: user_id, follow: following_id},
+                complete: function (msg) {
+                    alert(msg.responseText)
+                }
+            })
+        })
+
+    });
 
 </script>
 
