@@ -7,7 +7,10 @@ html body{
 }
 .global {
   background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
-  margin: 0;
+  margin-top: -17px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  margin-right: -15px;
 }
 
 .tweetsHead {
@@ -65,4 +68,23 @@ html body{
   border-color: #BFE0EC !important;
   background-color: #E5F2F7 !important;
   padding: 10px;
+}
+h3 {
+  color: #66757f;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 22px;
+}
+
+.follow {
+  background-color: #fff;
+  border: 1px solid #e1e8ed;
+  padding: 15px;
+  line-height: 16px;
+  border-radius: 5px;
+}
+
+.follow .content {
+  padding: 10px;
+  margin-top: 0;
 }

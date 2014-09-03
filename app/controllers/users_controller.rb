@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # end
 
   def index
-
+    render 'users/index'
   end
 
   def follow

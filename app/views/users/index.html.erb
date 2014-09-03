@@ -40,7 +40,7 @@
       <div class="newTweet">
         <div class="form-group">
           <!--<input type="text" class="form-control">-->
-          <textarea class="form-control" rows="1" id="taForTweet"></textarea>
+          <textarea class="form-control" rows="1" id="taForTweet" onfocus="addRowsTA()"></textarea>
         </div>
       </div>
 
@@ -65,26 +65,42 @@
 
     </div>
 
-    <div class="col-md-3">
-      <span>zzz</span>
+    <div class="follow col-md-3">
+      <h3>Who to follow</h3>
+
+      <div class="col-md-12 content">
+        <button class="btn btn-default">
+          <span class="visuallyhidden">user1</span>
+        </button>
+      </div>
+
+      <div class="col-md-12 content">
+        <button class="btn btn-default">
+          <span class="">user2</span>
+        </button>
+      </div>
+      <div class="col-md-12 content">
+        <button class="btn btn-default">
+          <span class="">user3</span>
+        </button>
+      </div>
     </div>
 
   </div>
 </div>
 <script>
-    $(document).ready(function () {
-//        $('#taForTweet').click(function () {
-//            $('#taForTweet').attr('rows', '4')
-//        });
+//    $(document).ready(function () {
+        $('#taForTweet').click(function () {
+            $('#taForTweet').attr('rows', '4')
+        });
 
-        if ($('#taForTweet').focusin()) {
+        function addRowsTA() {
             $('#taForTweet').attr('rows', '4')
         }
 
 //        var status = $('#taForTweet').is(":focus");
-        alert(status);
 
-    })
+//    })
 
 </script>
 
