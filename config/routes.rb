@@ -3,15 +3,15 @@ Rails.application.routes.draw do
 
   get 'home' => 'users#index'
 
-
-
   devise_for :users, :controllers => {:registrations => 'registrations'}
+
+  get 'home' => 'users#index', as: 'user_root'
 
   delete 'delTweet' => 'users#del_tweet'
 
   post 'follow' => 'users#follow'
 
-  get 'users/index', as: 'user_root'
+  delete 'unfollow' => 'users#unfollow'
 
   get '/:user_name' => 'users#profile'
 

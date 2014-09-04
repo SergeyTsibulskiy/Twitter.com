@@ -11,7 +11,20 @@ class UsersController < ApplicationController
 
   def index
     @current_user = User.find_by_id(current_user.id)
-    @tweets = @current_user.tweets
+    my_tweets = current_user.tweets
+
+    @following_user = Follower.where(:user_id => @current_user.id).all
+
+    @tweets = my_tweets
+    if @following_user.any?
+      @following_user.each do |user|
+        following_tweets = (User.find_by_id(user.follow_id)).tweets
+        @tweets += following_tweets
+      end
+    end
+
+    @tweets = @tweets.sort_by { |obj| obj.created_at }
+    @tweets.reverse!
 
     render 'users/index'
   end
@@ -29,12 +42,18 @@ class UsersController < ApplicationController
   end
 
   def del_tweet
-    data = params[:params]
+    current_user_id = params[:user_id]
+    tweet_id = params[:tweet_id]
 
-    current_tweet = Tweet.find_by_id(data)
-    current_tweet.destroy!
+    current_tweet = Tweet.find_by_id(tweet_id)
 
-    render json: 'deleted'
+    if current_tweet.user_id == current_user_id.to_f
+      current_tweet.destroy!
+      render json: 'deleted'
+    else
+      render json: 'access is denied'
+    end
+
   end
 
   def follow
@@ -42,11 +61,25 @@ class UsersController < ApplicationController
     follow.user = User.find_by_id(params[:user])
     follow.follow = User.find_by_id(params[:follow])
 
-    if (!Follower.exists?(:user_id => follow.user, :follow_id => follow.follow))
-      follow.save!
-      render json: 'following'
+    if follow.follow.id != follow.user.id
+      if (!Follower.exists?(:user_id => follow.user, :follow_id => follow.follow))
+        follow.save!
+        render json: 'following'
+      else
+        render json: 'exist'
+      end
     else
-      render json: 'exist'
+      render json: "You can't be followed for herself`"
+    end
+
+    def unfollow
+      user_id = params[:user_id]
+      follow_id = params[:follow_id]
+
+      current_follow = Follower.where(:user_id => user_id, :follow_id => follow_id).first
+      current_follow.destroy!
+
+      render json: 'deleted'
     end
 
   end
