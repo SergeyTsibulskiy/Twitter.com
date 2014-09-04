@@ -3,6 +3,8 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find_by_fullname(params[:user_name])
+    @tweets = @user.tweets
+    @following_user = Follower.where(:user_id => current_user.id).all
   end
 
   # def configure_permitted_parameters
