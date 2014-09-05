@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def profile
     @user = User.find_by_fullname(params[:user_name])
-    @tweets = @user.tweets
+    @tweets = @user.tweets.order(:created_at).reverse_order
     @following_user = Follower.where(:user_id => current_user.id).all
   end
 
