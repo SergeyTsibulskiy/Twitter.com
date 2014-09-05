@@ -68,7 +68,7 @@ $(document).ready(function () {
         count--;
         $('#counter').text(len - count);
 
-        if (count <= 0){
+        if (count <= 0) {
             $('btn_addTweet').attr("disabled", true);
         }
     })

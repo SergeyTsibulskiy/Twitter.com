@@ -4,6 +4,7 @@
 
 html body{
 //  background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
+  overflow-x:hidden;
 }
 
 textarea.no-expand {
@@ -12,11 +13,10 @@ textarea.no-expand {
 
 .global {
   background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
-  position: fixed;
+  position: absolute;
   top: 0;
-  left: 0;
-  min-width: 100%;
-  min-height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 .tweetsHead {
@@ -47,14 +47,21 @@ textarea.no-expand {
 
 .mainTweets .content {
   background-color: white;
-  padding: 15px;
+  padding: 15px 0px;
   margin-top: 0;
+}
+
+.mainTweets .content a {
+  padding-left: 10px;
+  padding-right: 10px;
 }
 
 .tweet {
   border-bottom: 1px solid #e1e8ed;
   cursor: pointer;
-  padding: 10px;
+  margin-left: 0px;
+  padding: 10px 10px 10px 20px;
+  font-size: 16px;
 }
 
 .mainProfile {
@@ -215,18 +222,121 @@ h3 {
   padding-left: 15px;
 }
 
-.btn-edit {
+.profile .btn-edit {
   padding: 7px;
   margin-top: 10px;
   padding-right: 15px;
   padding-left: 15px;
 }
 
-.tweets {
-  height: 700px;
+.profile .avatar {
+  bottom: -65px;
+  left: 250px;
+  z-index: 1;
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 1px rgba(136,153,166,0.15);
+  position: relative;
+  width: 200px;
+  overflow: hidden;
+}
+
+.profile .avatar img {
+  height: 200px;
+  width: 200px;
+}
+
+.profile .info_about_choice_user {
+  display: block;
+  font-size: 14px;
+  left: 0px;
+  margin-left: -325px;
+  margin-top: -30px;
+}
+
+.profile .info_about_choice_user .headU {
+  height: auto;
+  margin-top: 65px;
+  width: 200px;
+}
+
+.profile .info_about_choice_user .headU h1 {
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.profile .info_about_choice_user .headU h2 {
+  font-size: 14px;
+  color: #8899a6;
+  margin-top: 0;
+}
+
+.profile .info_about_choice_user .headU .nickname {
+  text-decoration: none!important;
+}
+
+.profile .info_about_choice_user .headU .nickname:hover {
+  text-decoration: underline!important;
+}
+
+.profile .info_about_choice_user .headU h2 a {
+  text-decoration: none!important;
+  color: #8899a6;
+}
+
+.profile .info_about_choice_user .headU .follow_status{
+  color: #8899a6;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.icon_clock {
+  height: 16px;
+}
+
+.profile .img_tweet {
+  height: 24px;
+  width: 24px;
+  border-radius: 4px;
+  text-decoration: none!important;
+}
+
+.profile .tweets .fullname {
+  font-size: 14px;
+  font-weight: bold;
+  color: #292f33;
+}
+
+.profile .tweets .nickname {
+  color: #8899a6;
+  font-size: 13px;
+  text-decoration: none!important;
+}
+
+.profile .tweets {
+  height: auto;
+}
+
+.profile .tweets .tweet {
+  border-bottom: 1px solid #e1e8ed;
+  cursor: pointer;
+  margin-bottom: 10px;
+  margin-left: 0px;
+  font-size: 16px;
+  padding: 10px 30px;
 }
 
 .profile .tweets .top {
   position: relative;
-  top: 45px;
+  margin-top: 45px;
+}
+
+.profile .tweet_panel .reply, .retweet, .star, .points {
+  margin-right: 35px;
+}
+
+.profile .tweet_panel .points {
+  width: 20px;
+  margin-top: 0px;
 }

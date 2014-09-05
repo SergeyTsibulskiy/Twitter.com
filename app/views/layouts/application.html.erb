@@ -15,7 +15,7 @@
         <div class="left" role="navigation">
           <ul class="list-inline">
             <li data-global-action="home">
-              <a class="" data-placement="bottom" href="/home" data-component-term="home_nav" data-nav="home">
+              <a class="" data-placement="bottom" href="/home" data-no-turbolink>
                 <div class="icon iconHome">
                   <div class="iconText">Home</div>
                 </div>
@@ -177,11 +177,8 @@
   $(document).ready(function(){
 
       $('.left a').click(function(){
-
-//          alert('dasdasd');
-          $('.left .active').removeClass('active'); // remove the class from the currently selected
-          $(this).parent().addClass('active'); // add the class to the newly clicked link
-
+          $('.left .active').removeClass('active');
+          $(this).parent().addClass('active');
       });
 
   });

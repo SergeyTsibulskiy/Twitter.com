@@ -4,6 +4,11 @@
 
     <div class="profile">
       <div class="row head">
+        <div class="avatar">
+          <a href="/Test">
+            <img src="/img/avatar.jpg">
+          </a>
+        </div>
       </div>
 
       <div class="row appContainer">
@@ -41,9 +46,9 @@
           <%= hidden_field_tag :current_user_id, current_user.id %>
 
           <% if current_user.id == @user.id %>
-            <button class="btn btn-default btn-edit">
+              <button class="btn btn-default btn-edit">
                 <span> Edit profile</span>
-            </button>
+              </button>
           <% else %>
               <% if @following_user.exists?(:user_id => current_user.id, :follow_id => @user.id) %>
                   <button class="btn btn-danger btn-follow" id="<%= @user.id %>">
@@ -57,28 +62,55 @@
 
           <% end %>
 
-          <!--<span class="button-text following-text">-->
-          <!--Following-->
-          <!--</span>-->
-          <!--<span class="button-text unfollow-text">-->
-          <!--Unfollow-->
-          <!--</span>-->
         </div>
 
       </div>
 
-
       <div class="row tweets">
+
         <div class="mainTweets col-md-7 col-md-offset-4 top">
+          <div class="col-md-2 info_about_choice_user">
+            <div class="headU">
+              <h1><%= @user.fullname %></h1>
+
+              <h2 class="">
+                <a href="/Mr_ValarkasS">@
+                  <span class="nickname">Mr_ValarkasS</span>
+                </a>
+                <span class="follow_status">follows you</span>
+              </h2>
+              <img class="icon_clock" src="/img/clock.png">
+              <span class="">Joined May 2011</span>
+            </div>
+          </div>
           <div class="tweetsHead col-md-7">
             <h2>Tweets</h2>
           </div>
           <div class="content col-md-7">
             <% @tweets.each do |tweet| %>
-                <div class="tweet"><%= tweet.tweet %>
-                  <span>(<%= tweet.user.fullname %>)</span>
+                <a class="" href="/Mr_ValarkasS">
+                  <img class="img_tweet" src="/img/default_profile.png">
+                  <span class="">
+                    <b class="fullname"><%= tweet.user.fullname %></b>
+                  </span>
+                </a>
+                <span class="nickname">
+                    <span class="at">@</span>Mr_ValarkasS
+                </span>
+                <div class="tweet">
+                  <%= tweet.tweet %>
                   <%= hidden_field_tag :user_id, tweet.user_id %>
-                  <a class="del" style="float: right" id=<%= tweet.id %>>del</a>
+                  <% if @current_user.id == tweet.user_id %>
+                      <a class="del" style="float: right" id=<%= tweet.id %>>del</a>
+                  <% end %>
+                  <div class="tweet_panel">
+                    <img class="reply" src="/img/reply.png">
+                    <img class="retweet" src="/img/retweet.png">
+                    <img class="star" src="/img/star.png">
+                    <img class="points" src="/img/points.png">
+
+                  </div>
+
                 </div>
             <% end %>
           </div>
