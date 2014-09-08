@@ -5,6 +5,8 @@ class UsersController < ApplicationController
     @user = User.find_by_fullname(params[:user_name])
     @tweets = @user.tweets.order(:created_at).reverse_order
     @following_user = Follower.where(:user_id => current_user.id).all
+    @followers_user = Follower.where(:follow_id => current_user.id)
+
   end
 
   # def configure_permitted_parameters
@@ -14,8 +16,10 @@ class UsersController < ApplicationController
   def index
     @current_user = User.find_by_id(current_user.id)
     my_tweets = current_user.tweets
+    @count = my_tweets.length
 
     @following_user = Follower.where(:user_id => @current_user.id).all
+    @followers_user = Follower.where(:follow_id => current_user.id)
 
     @tweets = my_tweets
     if @following_user.any?

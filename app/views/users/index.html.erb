@@ -7,14 +7,11 @@
 <body>
 <div class="global">
 
-  <div class="container" style="margin-top: 100px">
-
+  <div class="container" style="margin-top: 55px">
     <div class="mainProfile col-md-3 nopadding">
-
       <div class="head">
 
       </div>
-
       <div class="main">
 
         <div class="dashboardProfileCard">
@@ -33,21 +30,21 @@
         <div class="user_info">
           <ul class="list-inline nomargin">
             <li class="col-md-4 nomargin">
-              <a class="" title="173 Tweets" href="/seruy1993" data-element-term="tweet_stats">
+              <a class="" title="<%= pluralize(@count, 'Tweet') %>" href="/<%= current_user.fullname %>" data-element-term="tweet_stats">
                 <span class="span">Tweets</span>
-                <span class="value">173</span>
+                <span class="value"><%= @count %></span>
               </a>
             </li>
             <li class="col-md-4 nomargin">
-              <a class="" title="5 Following" href="/following" data-element-term="follower_stats">
+              <a class="" title="<%= pluralize(@following_user.length, 'Following') %>" href="/following" data-element-term="follower_stats">
                 <span class="span">Following</span>
-                <span class="value">5</span>
+                <span class="value"><%= @following_user.length %></span>
               </a>
             </li>
             <li class="col-md-4 nomargin">
-              <a class="" title="8 Followers" href="/followers" data-element-term="following_stats">
+              <a class="" title="<%= pluralize(@followers_user.length, 'Follower') %>" href="/followers" data-element-term="following_stats">
                 <span class="span">Followers</span>
-                <span class="value">8</span>
+                <span class="value"><%= @followers_user.length %></span>
               </a>
             </li>
           </ul>
@@ -80,15 +77,74 @@
       </div>
 
       <div class="content col-md-12">
-        <% @tweets.each do |tweet| %>
-            <div class="tweet"><%= tweet.tweet %>
-              <span>(<%= tweet.user.fullname %>)</span>
-              <%= hidden_field_tag :user_id, tweet.user_id %>
-              <% if @current_user.id == tweet.user_id %>
-                  <a class="del" style="float: right" id=<%= tweet.id %>>del</a>
-              <% end %>
-            </div>
-        <% end %>
+        <div class="row">
+          <div class="col-md-12">
+            <% @tweets.each do |tweet| %>
+                <div class="col-d-12 hover_tweet">
+                  <a class="" href="/<%= tweet.user.fullname %>">
+                    <%= image_tag tweet.user.avatar.url(:medium), class: 'img_tweet' %>
+                    <span class="fullname">
+                        <b><%= tweet.user.fullname %></b>
+                    </span>
+                  </a>
+                  <span class="nickname">
+                    <span class="at">@</span><%= tweet.user.fullname %>
+                  </span>
+
+                  <span class="time-ago">
+                    <%= time_ago_in_words((Time.now - tweet.created_at).second.from_now) %>
+                  </span>
+
+                  <div class="tweet">
+                    <%= tweet.tweet %>
+                    <br>
+                    <a>
+                      <span>Expand</span>
+                    </a>
+
+                    <div class="tweet_panel_i right">
+                      <ul class="list-inline">
+                        <li>
+                          <a>
+                            <img class="reply" src="/img/reply.png">
+                            <b>Reply</b>
+                          </a>
+                        </li>
+                        <li>
+                          <a>
+                            <img class="retweet" src="/img/retweet.png">
+                            <b>Retweet</b>
+                          </a>
+                        </li>
+                        <li>
+                          <a>
+                            <img class="star" src="/img/star.png">
+                            <b>Favorite</b>
+                          </a>
+                        </li>
+                        <li>
+                          <div>
+                            <div class="dropdown">
+                              <a data-toggle="dropdown">
+                                <img class="points" src="/img/points.png">
+                                <b>More</b>
+                              </a>
+                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li><a>Embed Tweet</a></li>
+                                <% if @current_user.id == tweet.user_id %>
+                                    <li><a class="del" id=<%= tweet.id %>>Delete tweet</a></li>
+                                <% end %>
+                              </ul>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+            <% end %>
+          </div>
+        </div>
       </div>
 
     </div>

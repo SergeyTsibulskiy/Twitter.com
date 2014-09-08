@@ -39,7 +39,7 @@
             </li>
             <li class="profile" data-global-action="profile">
               <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="<%=current_user.fullname %>"
-                 data-component-term="profile_nav" data-nav="profile">
+                 data-component-term="profile_nav" data-nav="profile" data-no-turbolink>
                 <div class="icon iconProfile">
                   <div class="iconText">Me</div>
                 </div>
@@ -76,12 +76,12 @@
             </div>
           </li>
 
-          <li>
-            <button class="btn btntwet" data-toggle="modal" onclick="showAllert()">
-              <span class=""></span>
-              <span class="visuallyhidden">Compose new Tweet</span>
-            </button>
-          </li>
+          <!--<li>-->
+            <!--<button class="btn btntwet" data-toggle="modal" onclick="showAllert()">-->
+              <!--<span class=""></span>-->
+              <!--<span class="visuallyhidden">Compose new Tweet</span>-->
+            <!--</button>-->
+          <!--</li>-->
         </ul>
 
         <!--<%= link_to 'Log Out', destroy_user_session_path, :method => :delete %>-->
@@ -165,7 +165,7 @@
   function showAllert(){
       BootstrapDialog.show({
           title: 'Draggable Dialog',
-          message: 'Your most favorite fruit: <textarea type="text" class="form-control">',
+          message: 'Your text: <textarea type="text" class="form-control">',
           draggable: true
       });
   }

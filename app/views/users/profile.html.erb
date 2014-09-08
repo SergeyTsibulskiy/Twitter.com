@@ -1,114 +1,107 @@
-<div class="global">
+<div class="global_profile">
 
   <div class="container-full">
 
     <div class="profile">
       <div class="row head">
-        <div class="avatar">
-          <a href="/Test">
-            <%= image_tag @user.avatar.url(:medium) %>
-          </a>
-        </div>
       </div>
-
       <div class="row appContainer">
-        <div class="col-md-4 col-md-offset-4">
-          <ul class="list-inline">
-            <li class="">
-              <a class="nav" title="171 Tweets">
+        <div class="container">
+          <ul class="list-inline profileNav">
+            <li>
+              <a class="nav" title="<%= pluralize(@tweets.length, 'Tweet') %>">
                 <span class="label">Tweets</span>
-                <span class="value">171</span>
+                <span class="value"><%= @tweets.length %></span>
               </a>
             </li>
-            <li class="">
-              <a class="nav" title="5 Following" data-nav="following" href="/following">
+            <li>
+              <a class="nav" title="<%= pluralize(@following_user.length, 'Following') %>" data-nav="following" href="/following">
                 <span class="label">Following</span>
-                <span class="value">5</span>
+                <span class="value"><%= @following_user.length %></span>
               </a>
             </li>
-            <li class="">
-              <a class="nav" title="8 Followers" href="/followers">
+            <li>
+              <a class="nav" title="<%= pluralize(@followers_user.length, 'Follower') %>" href="/followers">
                 <span class="label">Followers</span>
-                <span class="value">8</span>
-              </a>
-            </li>
-            <li class="">
-              <a class="nav" title="1 Favorite"
-                 href="/favorites">
-                <span class="label">Favorites</span>
-                <span class="value">1</span>
+                <span class="value"><%= @followers_user.length %></span>
               </a>
             </li>
           </ul>
-        </div>
 
-        <div class="col-md-1">
-          <%= hidden_field_tag :current_user_id, current_user.id %>
+          <div class="col-md-1">
+            <%= hidden_field_tag :current_user_id, current_user.id %>
 
-          <% if current_user.id == @user.id %>
-              <a href="users/edit">
-                <button class="btn btn-default btn-edit">
-                  <span> Edit profile</span>
-                </button>
-              </a>
-          <% else %>
-              <% if @following_user.exists?(:user_id => current_user.id, :follow_id => @user.id) %>
-                  <button class="btn btn-danger btn-follow" id="<%= @user.id %>">
-                    <span class="visuallyhidden">Unfollow</span>
+            <% if current_user.id == @user.id %>
+                <a href="users/edit">
+                  <button class="btn btn-default btn-edit">
+                    <span> Edit profile</span>
                   </button>
-              <% else %>
-                  <button class="btn btn-info btn-follow" id="<%= @user.id %>">
-                    <span class="visuallyhidden">Follow</span>
-                  </button>
-              <% end %>
-
-          <% end %>
-
+                </a>
+            <% else %>
+                <% if @following_user.exists?(:user_id => current_user.id, :follow_id => @user.id) %>
+                    <button class="btn btn-danger btn-follow" id="<%= @user.id %>">
+                      <span class="visuallyhidden">Unfollow</span>
+                    </button>
+                <% else %>
+                    <button class="btn btn-info btn-follow" id="<%= @user.id %>">
+                      <span class="visuallyhidden">Follow</span>
+                    </button>
+                <% end %>
+            <% end %>
+          </div>
         </div>
-
       </div>
 
-      <div class="row tweets">
+      <div class="container">
+        <div class="row tweets">
+          <div class="avatar">
+            <a href="/Test">
+              <%= image_tag @user.avatar.url(:medium) %>
+            </a>
+          </div>
+          <div class="mainTweets col-md-7 col-md-offset-3 top">
+            <div class="col-md-4 info_about_choice_user">
+              <div class="headU">
+                <h1><%= @user.fullname %></h1>
 
-        <div class="mainTweets col-md-7 col-md-offset-4 top">
-          <div class="col-md-2 info_about_choice_user">
-            <div class="headU">
-              <h1><%= @user.fullname %></h1>
-
-              <h2 class="">
-                <a href="/Mr_ValarkasS">@
-                  <span class="nickname">Mr_ValarkasS</span>
-                </a>
-                <span class="follow_status">follows you</span>
-              </h2>
-              <img class="icon_clock" src="/img/clock.png">
-              <span class="">Joined May 2011</span>
+                <h2 class="">
+                  <a href="/<%= @user.fullname %>">@
+                    <span class="nickname"><%= @user.fullname %></span>
+                  </a>
+                  <span class="follow_status">
+                  <% if @followers_user.exists?(:user_id => @user.id, :follow_id => current_user.id) %>
+                    follows you
+                  <% end %>
+                  </span>
+                </h2>
+                <img class="icon_clock" src="/img/clock.png">
+                <span class="">Joined May 2011</span>
+              </div>
             </div>
-          </div>
-          <div class="tweetsHead col-md-7">
-            <h2>Tweets</h2>
-          </div>
-          <div class="content col-md-7">
-            <% @tweets.each do |tweet| %>
-                <a class="" href="/Mr_ValarkasS">
-                  <%= image_tag @user.avatar.url(:thumb), class: 'img_tweet' %>
-                  <span class="">
+            <div class="tweetsHead col-md-10">
+              <h2>Tweets</h2>
+            </div>
+            <div class="content col-md-10">
+              <% @tweets.each do |tweet| %>
+                  <a class="" href="/<%= tweet.user.fullname %>">
+                    <%= image_tag @user.avatar.url(:thumb), class: 'img_tweet' %>
+                    <span class="">
                     <b class="fullname"><%= tweet.user.fullname %></b>
                   </span>
-                </a>
+                  </a>
                 <span class="nickname">
-                    <span class="at">@</span>Mr_ValarkasS
+                    <span class="at">@</span><%= tweet.user.fullname %>
                 </span>
 
-                <div class="tweet">
-                  <%= tweet.tweet %>
-                  <%= hidden_field_tag :user_id, tweet.user_id %>
+                  <div class="tweet">
+                    <%= tweet.tweet %>
+                    <%= hidden_field_tag :user_id, tweet.user_id %>
 
-                  <div class="tweet_panel">
+                    <div class="tweet_panel">
 
-                    <img class="reply" src="/img/reply.png">
-                    <img class="retweet" src="/img/retweet.png">
-                    <img class="star" src="/img/star.png">
+                      <img class="reply" src="/img/reply.png">
+                      <img class="retweet" src="/img/retweet.png">
+                      <img class="star" src="/img/star.png">
 
                     <span class="dropdown">
                         <img class="points" data-toggle="dropdown" src="/img/points.png">
@@ -119,54 +112,13 @@
                         <% end %>
                       </ul>
                     </span>
-
+                    </div>
                   </div>
-
-                </div>
-            <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-
 </div>
-
-<script>
-    $(document).ready(function () {
-
-        $('img.reply').mousemove(function () {
-            $(this).attr('src', '/img/replyH.png')
-        });
-
-        $('img.reply').mouseout(function () {
-            $(this).attr('src', '/img/reply.png')
-        });
-
-        $('img.retweet').mousemove(function () {
-            $(this).attr('src', '/img/retweetH.png')
-        });
-
-        $('img.retweet').mouseout(function () {
-            $(this).attr('src', '/img/retweet.png')
-        });
-
-        $('img.star').mousemove(function () {
-            $(this).attr('src', '/img/starH.png')
-        });
-
-        $('img.star').mouseout(function () {
-            $(this).attr('src', '/img/star.png')
-        })
-
-        $('img.points').mousemove(function () {
-            $(this).attr('src', '/img/pointsH.png')
-        });
-
-        $('img.points').mouseout(function () {
-            $(this).attr('src', '/img/points.png')
-        })
-
-    })
-</script>

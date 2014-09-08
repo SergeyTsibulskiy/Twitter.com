@@ -51,7 +51,7 @@ $(document).ready(function () {
                 $(location).attr('href', $(location).attr('href'));
             }
         })
-    })
+    });
 
     $('li.col-md-4').mousemove(function () {
         $(this).find('a').find('span.span').addClass('hover')
@@ -59,7 +59,7 @@ $(document).ready(function () {
 
     $('li.col-md-4').mouseout(function () {
         $(this).find('a').find('span.span').removeClass('hover')
-    })
+    });
 
     $('#taForTweet').keyup(function () {
 //        var count = $('#counter').text();
@@ -71,6 +71,38 @@ $(document).ready(function () {
         if (count <= 0) {
             $('btn_addTweet').attr("disabled", true);
         }
+    })
+
+    $('img.reply').mousemove(function () {
+        $(this).attr('src', '/img/replyH.png')
+    });
+
+    $('img.reply').mouseout(function () {
+        $(this).attr('src', '/img/reply.png')
+    });
+
+    $('img.retweet').mousemove(function () {
+        $(this).attr('src', '/img/retweetH.png')
+    });
+
+    $('img.retweet').mouseout(function () {
+        $(this).attr('src', '/img/retweet.png')
+    });
+
+    $('img.star').mousemove(function () {
+        $(this).attr('src', '/img/starH.png')
+    });
+
+    $('img.star').mouseout(function () {
+        $(this).attr('src', '/img/star.png')
+    })
+
+    $('img.points').mousemove(function () {
+        $(this).attr('src', '/img/pointsH.png')
+    });
+
+    $('img.points').mouseout(function () {
+        $(this).attr('src', '/img/points.png')
     })
 
 });
