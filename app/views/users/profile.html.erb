@@ -6,7 +6,7 @@
       <div class="row head">
         <div class="avatar">
           <a href="/Test">
-            <img src="/img/avatar.jpg">
+            <%= image_tag @user.avatar.url(:medium) %>
           </a>
         </div>
       </div>
@@ -46,9 +46,11 @@
           <%= hidden_field_tag :current_user_id, current_user.id %>
 
           <% if current_user.id == @user.id %>
-              <button class="btn btn-default btn-edit">
-                <span> Edit profile</span>
-              </button>
+              <a href="users/edit">
+                <button class="btn btn-default btn-edit">
+                  <span> Edit profile</span>
+                </button>
+              </a>
           <% else %>
               <% if @following_user.exists?(:user_id => current_user.id, :follow_id => @user.id) %>
                   <button class="btn btn-danger btn-follow" id="<%= @user.id %>">
@@ -89,7 +91,7 @@
           <div class="content col-md-7">
             <% @tweets.each do |tweet| %>
                 <a class="" href="/Mr_ValarkasS">
-                  <img class="img_tweet" src="/img/default_profile.png">
+                  <%= image_tag @user.avatar.url(:thumb), class: 'img_tweet' %>
                   <span class="">
                     <b class="fullname"><%= tweet.user.fullname %></b>
                   </span>
@@ -97,6 +99,7 @@
                 <span class="nickname">
                     <span class="at">@</span>Mr_ValarkasS
                 </span>
+
                 <div class="tweet">
                   <%= tweet.tweet %>
                   <%= hidden_field_tag :user_id, tweet.user_id %>
@@ -131,39 +134,39 @@
 </div>
 
 <script>
-  $(document).ready(function () {
+    $(document).ready(function () {
 
-      $('img.reply').mousemove(function(){
-          $(this).attr('src', '/img/replyH.png')
-      });
+        $('img.reply').mousemove(function () {
+            $(this).attr('src', '/img/replyH.png')
+        });
 
-      $('img.reply').mouseout(function(){
-          $(this).attr('src', '/img/reply.png')
-      });
+        $('img.reply').mouseout(function () {
+            $(this).attr('src', '/img/reply.png')
+        });
 
-      $('img.retweet').mousemove(function(){
-          $(this).attr('src', '/img/retweetH.png')
-      });
+        $('img.retweet').mousemove(function () {
+            $(this).attr('src', '/img/retweetH.png')
+        });
 
-      $('img.retweet').mouseout(function(){
-          $(this).attr('src', '/img/retweet.png')
-      });
+        $('img.retweet').mouseout(function () {
+            $(this).attr('src', '/img/retweet.png')
+        });
 
-      $('img.star').mousemove(function(){
-          $(this).attr('src', '/img/starH.png')
-      });
+        $('img.star').mousemove(function () {
+            $(this).attr('src', '/img/starH.png')
+        });
 
-      $('img.star').mouseout(function(){
-          $(this).attr('src', '/img/star.png')
-      })
+        $('img.star').mouseout(function () {
+            $(this).attr('src', '/img/star.png')
+        })
 
-      $('img.points').mousemove(function(){
-          $(this).attr('src', '/img/pointsH.png')
-      });
+        $('img.points').mousemove(function () {
+            $(this).attr('src', '/img/pointsH.png')
+        });
 
-      $('img.points').mouseout(function(){
-          $(this).attr('src', '/img/points.png')
-      })
+        $('img.points').mouseout(function () {
+            $(this).attr('src', '/img/points.png')
+        })
 
-  })
+    })
 </script>
