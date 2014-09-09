@@ -63,15 +63,17 @@ $(document).ready(function () {
 
     $('#taForTweet').keyup(function () {
 //        var count = $('#counter').text();
-        const len = 140;
+        const len = 139;
         var count = $(this).val().length;
         count--;
         $('#counter').text(len - count);
 
-        if (count <= 0) {
-            $('btn_addTweet').attr("disabled", true);
+        if (count > 139) {
+            $('#btn_addTweet').attr("disabled", true);
+        }else {
+            $('#btn_addTweet').attr("disabled", false);
         }
-    })
+    });
 
     $('img.reply').mousemove(function () {
         $(this).attr('src', '/img/replyH.png')
