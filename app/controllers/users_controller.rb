@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     @tweets = @user.tweets.order(:created_at).reverse_order
     @following_user = Follower.where(:user_id => current_user.id).all
     @followers_user = Follower.where(:follow_id => current_user.id)
-
+    @users = User.order('RAND()').limit(3)
   end
 
   # def configure_permitted_parameters
@@ -18,7 +18,9 @@ class UsersController < ApplicationController
     my_tweets = current_user.tweets
     @count = my_tweets.length
 
-    @following_user = Follower.where(:user_id => @current_user.id).all
+    @users = User.order('RAND()').limit(3)
+
+    @following_user = Follower.where(:user_id => current_user.id).all
     @followers_user = Follower.where(:follow_id => current_user.id)
 
     @tweets = my_tweets

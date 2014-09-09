@@ -116,6 +116,47 @@
                   </div>
               <% end %>
             </div>
+          </div>\
+          <div class="col-md-3 whofollow follow">
+            <h3 class="nomargin">Who to follow
+              <small><a>Refresh</a></small>
+              <small><a>View all</a></small>
+            </h3>
+            <%= hidden_field_tag :current_user_id, current_user.id %>
+            <% @users.each do |user| %>
+                <div class="col-md-12 content">
+                  <a class="" href="/<%= user.fullname %>">
+                    <%= image_tag user.avatar.url(:medium), class: 'whofollow_img_tweet' %>
+                    <div class="whofollow_info clip">
+                      <b class="fullname"><%= user.fullname %></b>
+                <span>
+                    <span class="at">@</span><%= user.fullname %>
+                </span>
+                    </div>
+                  </a>
+
+                  <div>
+                    <button type="button" class="btn btn-default btn-whofollow">
+                      <img src="img/user-addH.png" class="add_user">
+
+                      <div class="">Follow</div>
+                    </button>
+                  </div>
+                </div>
+            <% end %>
+
+            <div class="row">
+              <div class="col-md-6">
+                <a class="interests-link">
+                  Popular accounts
+                </a>
+              </div>
+              <div class="col-md-6">
+                <a class="interests-link">
+                  Find friends
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>

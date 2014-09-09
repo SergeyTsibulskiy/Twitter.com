@@ -15,14 +15,14 @@
         <div class="left" role="navigation">
           <ul class="list-inline">
             <li data-global-action="home">
-              <a class="" data-placement="bottom" href="/home" data-no-turbolink>
+              <a data-placement="bottom" href="/home" data-no-turbolink>
                 <div class="icon iconHome">
                   <div class="iconText">Home</div>
                 </div>
               </a>
             </li>
             <li class="people notifications" data-global-action="connect">
-              <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="/##"
+              <a data-placement="bottom"
                  data-component-term="connect_nav" data-nav="connect">
                 <div class="icon iconNotifications">
                   <div class="iconText">Notification</div>
@@ -30,7 +30,7 @@
               </a>
             </li>
             <li class="topics" data-global-action="discover">
-              <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="/###"
+              <a data-placement="bottom"
                  data-component-term="discover_nav" data-nav="discover">
                 <div class="icon iconDiscover">
                   <div class="iconText">Discover</div>
@@ -38,7 +38,7 @@
               </a>
             </li>
             <li class="profile" data-global-action="profile">
-              <a class="js-nav js-tooltip js-dynamic-tooltip" data-placement="bottom" href="<%=current_user.fullname %>"
+              <a data-placement="bottom" href="/<%=current_user.fullname %>"
                  data-component-term="profile_nav" data-nav="profile" data-no-turbolink>
                 <div class="icon iconProfile">
                   <div class="iconText">Me</div>
@@ -170,10 +170,12 @@
       });
   }
   $(document).ready(function(){
+      var current_url = $(location).attr('pathname');
 
-      $('.left a').click(function(){
-          $('.left .active').removeClass('active');
-          $(this).parent().addClass('active');
+      $('.left a').each(function (key, value){
+          if ($(value).attr('href') == current_url) {
+              $(value).parent().addClass('active');
+          }
       });
 
   });

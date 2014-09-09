@@ -4,7 +4,13 @@
 
 html body{
 //  background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
+  font-family: "Helvetica Neue",Helvetica,Arial, sans-serif;
   overflow-x:hidden;
+}
+
+textarea {
+  border-color: rgba(59,148,217,0.25);
+  border-radius: 3px !important;
 }
 
 textarea.no-expand {
@@ -16,7 +22,7 @@ textarea.no-expand {
   position: absolute;
   top: 0;
   width: 100%;
-  height: 100%;
+//  height: 100%;
 }
 
 .global_profile {
@@ -53,6 +59,20 @@ textarea.no-expand {
   width: 101%;
 }
 
+.whofollow {
+  margin-top: 45px;
+  margin-left: -110px;
+}
+
+.whofollow_img_tweet {
+  height: 48px;
+  width: 48px;
+  border-radius: 4px;
+  text-decoration: none!important;
+  float: left;
+  margin-right: 5px;
+}
+
 .mainTweets .content {
   background-color: white;
   padding: 1px 0px;
@@ -71,6 +91,10 @@ textarea.no-expand {
 .container .btn-follow, .btn-edit {
   position: relative;
   left: 500px;
+}
+
+.hover_tweet {
+  padding-top: 5px;
 }
 
 .hover_tweet:hover {
@@ -101,7 +125,7 @@ textarea.no-expand {
 
 .mainProfile {
   border: 1px solid #e1e8ed;
-  background: #FFF;
+//  background: #FFF;
   border-radius: 6px;
   padding: 10px;
 }
@@ -191,12 +215,17 @@ h3 {
   line-height: 22px;
 }
 
+h3 small {
+  font-size: 12px;
+}
+
 .follow {
   background-color: #fff;
   border: 1px solid #e1e8ed;
   padding: 15px;
   line-height: 16px;
   border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .follow .content {
@@ -221,7 +250,7 @@ h3 {
   background-color: #fff;
   height: 60px;
   top: 45px;
-
+  border-bottom: 1px solid #e1e8ed;
 }
 
 
@@ -342,6 +371,15 @@ h3 {
   text-decoration: none!important;
 }
 
+.img_tweet {
+  height: 48px;
+  width: 48px;
+  border-radius: 4px;
+  text-decoration: none!important;
+  float: left;
+  margin-right: 5px;
+}
+
 .fullname {
   color: black;
   float: left;
@@ -410,4 +448,62 @@ h3 {
 .time-ago {
   font-size: 13px;
   color: #8899a6
+}
+
+.btn-whofollow {
+  margin-top: 3px;
+  width: 85px;
+}
+
+.add_user {
+  float: left;
+  width: 14px;
+  margin: 2px 5px 2px 2px;
+}
+
+.interests-link {
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.clip {
+  white-space: nowrap; /* Запрещаем перенос строк */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Добавляем многоточие */
+  width: 180px;
+}
+
+.block {
+  background-color: #fff;
+  border: 1px solid #e1e8ed;
+  padding: 15px;
+  line-height: 16px;
+}
+
+.footerlist {
+  color: #8899a6;
+  font-size: 12px;
+}
+
+.Footer-link {
+  color: #8899a6;
+  text-decoration: none;
+}
+
+.Footer-link:hover {
+  color: #8899a6;
+}
+
+#counter {
+  background-color: transparent;
+  color: #8899a6;
+  display: inline-block;
+  width: 35px;
+  border: 0;
+  padding: 0 3px;
+  position: relative;
+  vertical-align: top;
+  text-align: right;
+  font-size: 14px;
+  text-shadow: 0 1px 1px rgba(255,255,255,.75);
 }

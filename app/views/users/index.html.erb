@@ -8,6 +8,7 @@
 <div class="global">
 
   <div class="container" style="margin-top: 55px">
+
     <div class="mainProfile col-md-3 nopadding">
       <div class="head">
 
@@ -30,19 +31,19 @@
         <div class="user_info">
           <ul class="list-inline nomargin">
             <li class="col-md-4 nomargin">
-              <a class="" title="<%= pluralize(@count, 'Tweet') %>" href="/<%= current_user.fullname %>" data-element-term="tweet_stats">
+              <a class="" title="<%= pluralize(@count, 'Tweet') %>" href="/<%= current_user.fullname %>">
                 <span class="span">Tweets</span>
                 <span class="value"><%= @count %></span>
               </a>
             </li>
             <li class="col-md-4 nomargin">
-              <a class="" title="<%= pluralize(@following_user.length, 'Following') %>" href="/following" data-element-term="follower_stats">
+              <a class="" title="<%= pluralize(@following_user.length, 'Following') %>">
                 <span class="span">Following</span>
                 <span class="value"><%= @following_user.length %></span>
               </a>
             </li>
             <li class="col-md-4 nomargin">
-              <a class="" title="<%= pluralize(@followers_user.length, 'Follower') %>" href="/followers" data-element-term="following_stats">
+              <a class="" title="<%= pluralize(@followers_user.length, 'Follower') %>">
                 <span class="span">Followers</span>
                 <span class="value"><%= @followers_user.length %></span>
               </a>
@@ -55,7 +56,8 @@
         <%= form_tag 'addTweet', :class => 'form-signin form-horizontal' do %>
             <div class="form-group">
               <div class="col-md-12">
-                <%= text_area :tweet, params[:tweet], class: 'form-control', rows: '1', id: 'taForTweet' %>
+                <%= text_area :tweet, params[:tweet], class: 'form-control', rows: '1', id: 'taForTweet',
+                placeholder: 'Compose new Tweet...'%>
               </div>
             </div>
             <div class="row">
@@ -69,7 +71,6 @@
         <% end %>
       </div>
     </div>
-
 
     <div class="mainTweets col-md-6">
       <div class="tweetsHead col-md-12">
@@ -95,33 +96,15 @@
                     <%= time_ago_in_words((Time.now - tweet.created_at).second.from_now) %>
                   </span>
 
-                  <div class="tweet">
-                    <%= tweet.tweet %>
+                  <div class="tweet"><%= tweet.tweet %>
                     <br>
-                    <a>
-                      <span>Expand</span>
-                    </a>
+                    <a><span>Expand</span></a>
 
                     <div class="tweet_panel_i right">
                       <ul class="list-inline">
-                        <li>
-                          <a>
-                            <img class="reply" src="/img/reply.png">
-                            <b>Reply</b>
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            <img class="retweet" src="/img/retweet.png">
-                            <b>Retweet</b>
-                          </a>
-                        </li>
-                        <li>
-                          <a>
-                            <img class="star" src="/img/star.png">
-                            <b>Favorite</b>
-                          </a>
-                        </li>
+                        <li><a><img class="reply" src="/img/reply.png"><b>Reply</b></a></li>
+                        <li><a><img class="retweet" src="/img/retweet.png"><b>Retweet</b></a></li>
+                        <li><a><img class="star" src="/img/star.png"><b>Favorite</b></a></li>
                         <li>
                           <div>
                             <div class="dropdown">
@@ -150,43 +133,65 @@
     </div>
 
     <div class="follow col-md-3">
-      <h3>Who to follow</h3>
+      <h3>Who to follow
+        <small><a>Refresh</a></small>
+        <small><a>View all</a></small>
+      </h3>
       <%= hidden_field_tag :current_user_id, current_user.id %>
-      <div class="col-md-12 content">
-        <% if @following_user.exists?(:user_id => current_user.id, :follow_id => 9) %>
-            <button class="btn btn-danger" id="9">
-              <span class="visuallyhidden">Petr Unfollow</span>
-            </button>
-        <% else %>
-            <button class="btn btn-primary btn-follow" id="9">
-              <span class="visuallyhidden">Petr Following</span>
-            </button>
-        <% end %>
+      <% @users.each do |user| %>
+          <div class="col-md-12 content">
+            <a class="" href="/<%= user.fullname %>">
+              <%= image_tag user.avatar.url(:medium), class: 'img_tweet' %>
+              <div class="whofollow_info clip">
+                <b class="fullname"><%= user.fullname %></b>
+                <span>
+                    <span class="at">@</span><%= user.fullname %>
+                </span>
+              </div>
+            </a>
 
-      </div>
+            <div>
+              <button type="button" class="btn btn-default btn-whofollow">
+                <img src="img/user-addH.png" class="add_user">
 
-      <div class="col-md-12 content">
-        <% if @following_user.exists?(:user_id => current_user.id, :follow_id => 6) %>
-            <button class="btn btn-danger" id="6">
-              <span class="visuallyhidden">Sergey Unfollow</span>
-            </button>
-        <% else %>
-            <button class="btn btn-primary btn-follow" id="6">
-              <span class="visuallyhidden">Sergey Following</span>
-            </button>
-        <% end %>
+                <div class="">Follow</div>
+              </button>
+            </div>
+          </div>
+      <% end %>
+
+      <div class="row">
+        <div class="col-md-6">
+          <a class="interests-link">
+            Popular accounts
+          </a>
+        </div>
+        <div class="col-md-6">
+          <a class="interests-link">
+            Find friends
+          </a>
+        </div>
       </div>
-      <div class="col-md-12 content">
-        <% if @following_user.exists?(:user_id => current_user.id, :follow_id => 8) %>
-            <button class="btn btn-danger" id="8">
-              <span class="visuallyhidden">Test Unfollow</span>
-            </button>
-        <% else %>
-            <button class="btn btn-primary btn-follow" id="8">
-              <span class="visuallyhidden">Test Following</span>
-            </button>
-        <% end %>
-      </div>
+    </div>
+    <div class="col-md-3 follow footerlist">
+      <ul class="list-inline">
+        <li>© 2014 Twitter</li>
+        <li><a class="Footer-link" href="/about">About</a></li>
+        <li><a class="Footer-link" href="//support.twitter.com">Help</a></li>
+        <li><a class="Footer-link" href="/tos">Terms</a></li>
+        <li><a class="Footer-link" href="/privacy">Privacy</a></li>
+        <li><a class="Footer-link" href="//support.twitter.com/articles/20170514">Cookies</a></li>
+        <li><a class="Footer-link" href="//support.twitter.com/articles/20170451">Ads info</a></li>
+        <li><a class="Footer-link" href="//about.twitter.com/press/brand-assets">Brand</a></li>
+        <li><a class="Footer-link" href="https://blog.twitter.com">Blog</a></li>
+        <li><a class="Footer-link" href="http://status.twitter.com">Status</a></li>
+        <li><a class="Footer-link" href="https://about.twitter.com/products">Apps</a></li>
+        <li><a class="Footer-link" href="https://about.twitter.com/careers">Jobs</a></li>
+        <li><a class="Footer-link" href="//ads.twitter.com/start?ref=gl-tw-tw-twitter-advertise">Advertise</a></li>
+        <li><a class="Footer-link" href="https://business.twitter.com">Businesses</a></li>
+        <li><a class="Footer-link" href="//media.twitter.com">Media</a></li>
+        <li><a class="Footer-link" href="//dev.twitter.com">Developers</a></li>
+      </ul>
     </div>
 
   </div>
