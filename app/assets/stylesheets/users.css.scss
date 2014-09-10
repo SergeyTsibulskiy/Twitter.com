@@ -17,12 +17,18 @@ textarea.no-expand {
   resize: none;
 }
 
+hr {
+  margin-top: 1px;
+  margin-bottom: 1px;
+}
+
 .global {
-  background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
+//  background: #C0DEED url("http://localhost:3000/img/bg.png") no-repeat fixed left 40px;
+  background-color: black;
   position: absolute;
   top: 0;
   width: 100%;
-//  height: 100%;
+  height: 100%;
 }
 
 .global_profile {
@@ -39,6 +45,7 @@ textarea.no-expand {
   border-radius: 6px 6px 0 0;
   background-clip: padding-box;
   background-color: white;
+  padding-left: 10px;
 }
 
 .tweetsHead h2 {
@@ -73,10 +80,21 @@ textarea.no-expand {
   margin-right: 5px;
 }
 
-.mainTweets .content {
+.content {
   background-color: white;
   padding: 1px 0px;
   margin-top: 0;
+}
+
+.content .tweet_p {
+  border-bottom: 1px solid #e1e8ed;
+  background: #ffffff;
+  padding: 10px;
+}
+
+.content .tweet_p:hover {
+  outline:1px solid #3B94D9;
+  cursor: pointer;
 }
 
 .mainTweets .content a {
@@ -94,7 +112,11 @@ textarea.no-expand {
 }
 
 .hover_tweet {
-  padding-top: 5px;
+  padding-top: 10px;
+  border: none;
+  cursor: pointer;
+  border-bottom: 1px solid #e1e8ed;
+  padding-bottom: 5px;
 }
 
 .hover_tweet:hover {
@@ -110,11 +132,14 @@ textarea.no-expand {
   text-decoration: none!important;
 }
 
-.tweet {
+.hover .tweet {
   border-bottom: 1px solid #e1e8ed;
   cursor: pointer;
-  margin-left: 0px;
-  padding: 0px 10px 10px 68px;
+  padding-left: 70px;
+  font-size: 16px;
+}
+
+.leftPanel {
   font-size: 16px;
 }
 
@@ -125,7 +150,6 @@ textarea.no-expand {
 
 .mainProfile {
   border: 1px solid #e1e8ed;
-//  background: #FFF;
   border-radius: 6px;
   padding: 10px;
 }
@@ -198,6 +222,20 @@ textarea.no-expand {
   color: #3B94D9;
 }
 
+.trends {
+  padding-top: 10px;
+  padding-left: 0;
+}
+
+.trends li {
+  font-size: 12px;
+  line-height: 20px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 300;
+}
+
 .user_info .hover {
   color: #3B94D9;
 }
@@ -231,8 +269,8 @@ h3 small {
 .follow .content {
   padding: 10px;
   margin-top: 0;
+  padding-left: 0;
 }
-
 
 .profile{
   background: #f5f8fa!important;
@@ -253,10 +291,10 @@ h3 small {
   border-bottom: 1px solid #e1e8ed;
 }
 
-
 .profile .appContainer ul{
   float: left;
-  margin-right: 100px
+  margin-right: 200px;
+  margin-left: -25px;
 }
 
 .profile .nav {
@@ -272,6 +310,7 @@ h3 small {
 .profile .nav .label,.value {
   display: block;
   text-align: center;
+  font-weight: normal;
 }
 
 .profile .nav .label {
@@ -298,15 +337,12 @@ h3 small {
 }
 
 .profile .avatar {
-  top: 116px;
-  margin-left: 50px;
-  margin-left: 50px;
+
   z-index: 1;
   background: #fff;
   border: 5px solid #fff;
   border-radius: 12px;
   box-shadow: 0 1px 1px rgba(136, 153, 166, 0.15);
-  position: absolute;
   width: 200px;
   overflow: hidden;
 }
@@ -320,8 +356,7 @@ h3 small {
   display: block;
   font-size: 14px;
   left: 0px;
-  margin-left: -267px;
-  margin-top: -30px;
+  margin-top: -50px;
 }
 
 .profile .info_about_choice_user .headU {
@@ -422,6 +457,12 @@ h3 small {
   margin-top: 45px;
 }
 
+.tweet_panel {
+  margin-left: 30px;
+//  margin-bottom: 10px;
+  padding-top: 5px;
+}
+
 .profile .tweet_panel .reply {
   margin-right: 35px;
   width: 18px;
@@ -435,9 +476,14 @@ h3 small {
   width: 18px;
 }
 
+.tweet_panel_i {
+//  height: 15px;
+}
+
 .mainTweets .tweet_panel_i .reply, .retweet, .star, .points {
   margin-right: 5px;
   width: 14px;
+
 }
 
 .profile .tweet_panel .points {
@@ -467,10 +513,17 @@ h3 small {
 }
 
 .clip {
-  white-space: nowrap; /* Запрещаем перенос строк */
+  white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; /* Добавляем многоточие */
+  text-overflow: ellipsis;
   width: 180px;
+}
+
+.clip_p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 155px;
 }
 
 .block {

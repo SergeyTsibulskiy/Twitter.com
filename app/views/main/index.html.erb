@@ -1,111 +1,115 @@
-<div class="container-full content">
-  <div class="row">
-    <div class="info col-md-4 col-md-offset-3">
-      <h1>Welcome to Twitter.</h1>
+<div class="global_index">
+  <br><br><br><br>
+  <div class="container-full">
+    <div class="row">
+      <div class="info col-md-4 col-md-offset-3">
+        <h1>Welcome to Twitter.</h1>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+        <p class="notice"><%= notice %></p>
 
-      <p class="lead">Connect with your friends — and other fascinating people. Get in-the-moment updates on the things
-        that interest you. And watch events unfold, in real time, from every angle.</p>
+        <p class="alert"><%= alert %></p>
 
-      <div class="background-companion-tweets">
-        <div class="companion-tweet">
-          <p class="text">
-            <a href="/laurenlemon/status/470403949980549121" class="tweet-text">Okay, okay, okay! #Sasquatch2014</a>
-          </p>
+        <p class="lead">Connect with your friends — and other fascinating people. Get in-the-moment updates on the
+          things
+          that interest you. And watch events unfold, in real time, from every angle.</p>
 
-          <p class="username">
-            <a href="/laurenlemon/status/470403949980549121" class="tweet-username">Tweet and photo by
-              @<span>laurenlemon</span></a>
-          </p>
-          <a href="/laurenlemon/status/470403949980549121" class="time tweet-time">8:20 PM - 24 May 2014</a>
+        <div class="background-companion-tweets">
+          <div class="companion-tweet">
+            <p class="text">
+              <a href="/laurenlemon/status/470403949980549121" class="tweet-text">Okay, okay, okay! #Sasquatch2014</a>
+            </p>
+
+            <p class="username">
+              <a href="/laurenlemon/status/470403949980549121" class="tweet-username">Tweet and photo by
+                @<span>laurenlemon</span></a>
+            </p>
+            <a href="/laurenlemon/status/470403949980549121" class="time tweet-time">8:20 PM - 24 May 2014</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-md-3">
-      <div class="row">
-        <div class="col-md-10">
-          <div class="panel panel-default">
-            <div class="panel-body nopadding">
-              <%= form_for(resource, html: {class: 'signin'}, as: resource_name, url: session_path(resource_name)) do |f| %>
-                  <div class="form-group col-md-12 nopadding">
-                    <%= f.email_field :email, autofocus: true,
-                                      class: 'form-control', placeholder: 'Phone, email or username' %>
-                  </div>
-                  <div class="form-group col-md-9 nopadding nomargin" style="margin-right: 3px">
-                    <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'Password' %>
-                  </div>
-                  <%= f.submit 'Sign in', class: 'btn btn-primary fixmarginbtn' %>
-                  <% if devise_mapping.rememberable? -%>
-                      <div class="checkbox col-md-12 forgot nomargin">
-                        <%= f.check_box :remember_me %> <%= f.label :remember_me %>
-                        <a class=​"forgot" href=​"#"> - ​Forgot password?​</a>
-                      </div>
-                  <% end %>
-              <% end %>
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="panel panel-default">
+              <div class="panel-body nopadding">
+                <%= form_for(resource, html: {class: 'signin'}, as: resource_name, url: session_path(resource_name)) do |f| %>
+                    <div class="form-group col-md-12 nopadding">
+                      <%= f.email_field :email, autofocus: true,
+                                        class: 'form-control', placeholder: 'Phone, email or username' %>
+                    </div>
+                    <div class="form-group col-md-9 nopadding nomargin" style="margin-right: 3px">
+                      <%= f.password_field :password, class: 'form-control', autocomplete: 'off', placeholder: 'Password' %>
+                    </div>
+                    <%= f.submit 'Sign in', class: 'btn btn-primary fixmarginbtn' %>
+                    <% if devise_mapping.rememberable? -%>
+                        <div class="checkbox col-md-12 forgot nomargin">
+                          <%= f.check_box :remember_me %> <%= f.label :remember_me %>
+                          <a class=​"forgot" href=​"#"> - ​Forgot password?​</a>
+                        </div>
+                    <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3">
+        <div class="row">
+          <div class="col-md-10">
+            <div class="panel panel-default">
+              <div class="panel-body signup nopadding">
+                <h4>
+                  <strong>New to Twitter?</strong> Sign up
+                </h4>
+                <%= form_for(resource, html: {class: 'signin'}, as: resource_name, url: registration_path(resource_name)) do |f| %>
+                    <div class="form-group col-md-12 nopadding defaultmargin">
+                      <%= f.text_field :fullname, autofocus: true, autocomplete: 'on',
+                                       placeholder: 'Full name', class: 'form-control' %>
+                    </div>
+                    <div class="form-group col-md-12 nopadding defaultmargin">
+                      <%= f.email_field :email, autofocus: true, placeholder: 'Email', class: 'form-control' %>
+                    </div>
+                    <div class="form-group col-md-12 nopadding defaultmargin">
+                      <%= f.password_field :password, autocomplete: 'off', placeholder: 'Password', class: 'form-control' %>
+                    </div>
+                    <div class="form-group col-md-12 nopadding">
+                      <%= f.submit 'Sign up for Twitter', class: 'btn btn-warning right' %>
+                    </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-md-3">
-      <div class="row">
-        <div class="col-md-10">
-          <div class="panel panel-default">
-            <div class="panel-body signup nopadding">
-              <h4>
-                <strong>New to Twitter?</strong> Sign up
-              </h4>
-              <%= form_for(resource, html: {class: 'signin'}, as: resource_name, url: registration_path(resource_name)) do |f| %>
-                  <div class="form-group col-md-12 nopadding defaultmargin">
-                    <%= f.text_field :fullname, autofocus: true, autocomplete: 'on',
-                                     placeholder: 'Full name', class: 'form-control' %>
-                  </div>
-                  <div class="form-group col-md-12 nopadding defaultmargin">
-                    <%= f.email_field :email, autofocus: true, placeholder: 'Email', class: 'form-control' %>
-                  </div>
-                  <div class="form-group col-md-12 nopadding defaultmargin">
-                    <%= f.password_field :password, autocomplete: 'off', placeholder: 'Password', class: 'form-control' %>
-                  </div>
-                  <div class="form-group col-md-12 nopadding">
-                    <%= f.submit 'Sign up for Twitter', class: 'btn btn-warning right'%>
-                  </div>
-              <% end %>
-            </div>
+    <div class="footer">
+      <div class="container-full">
+        <div class="row">
+          <div class="center">
+            <ul class="list-inline">
+              <li><a href="/about">About</a></li>
+              <li><a href="//support.twitter.com">Help</a></li>
+              <li><a href="https://blog.twitter.com">Blog</a></li>
+              <li><a href="http://status.twitter.com">Status</a></li>
+              <li><a href="https://about.twitter.com/careers">Jobs</a></li>
+              <li><a href="/tos">Terms</a></li>
+              <li><a href="/privacy">Privacy</a></li>
+              <li><a href="//support.twitter.com/articles/20170514">Cookies</a></li>
+              <li><a href="//support.twitter.com/articles/20170451">Ads info</a></li>
+              <li><a href="//about.twitter.com/press/brand-assets">Brand</a></li>
+              <li><a href="//ads.twitter.com/start?ref=gl-tw-tw-twitter-advertise">Advertise</a></li>
+              <li><a href="https://business.twitter.com">Businesses</a></li>
+              <li><a href="//media.twitter.com">Media</a></li>
+              <li><a href="//dev.twitter.com">Developers</a></li>
+              <li><a href="/i/directory/profiles">Directory</a></li>
+              <li><span class="copyright">&copy; 2014 Twitter</span></li>
+            </ul>
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="container-full">
-      <div class="row">
-        <div class="center">
-          <ul class="list-inline">
-            <li><a href="/about">About</a></li>
-            <li><a href="//support.twitter.com">Help</a></li>
-            <li><a href="https://blog.twitter.com">Blog</a></li>
-            <li><a href="http://status.twitter.com">Status</a></li>
-            <li><a href="https://about.twitter.com/careers">Jobs</a></li>
-            <li><a href="/tos">Terms</a></li>
-            <li><a href="/privacy">Privacy</a></li>
-            <li><a href="//support.twitter.com/articles/20170514">Cookies</a></li>
-            <li><a href="//support.twitter.com/articles/20170451">Ads info</a></li>
-            <li><a href="//about.twitter.com/press/brand-assets">Brand</a></li>
-            <li><a href="//ads.twitter.com/start?ref=gl-tw-tw-twitter-advertise">Advertise</a></li>
-            <li><a href="https://business.twitter.com">Businesses</a></li>
-            <li><a href="//media.twitter.com">Media</a></li>
-            <li><a href="//dev.twitter.com">Developers</a></li>
-            <li><a href="/i/directory/profiles">Directory</a></li>
-            <li><span class="copyright">&copy; 2014 Twitter</span></li>
-          </ul>
         </div>
       </div>
     </div>
   </div>
 </div>
-

@@ -1,93 +1,110 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-  <meta charset="UTF-8">
-  <title></title>
-</head>
-<body>
+
 <div class="global">
+  <br/><br/><br/>
 
-  <div class="container" style="margin-top: 55px">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 nopadding nomargin">
+        <div class="col-md-12 nopadding">
 
-    <div class="mainProfile col-md-3 nopadding">
-      <div class="head">
+          <div class="mainProfile nopadding">
+            <div class="head">
 
-      </div>
-      <div class="main">
+            </div>
+            <div class="main">
 
-        <div class="dashboardProfileCard">
-          <a href="/<%= current_user.fullname %>">
-            <%= image_tag @current_user.avatar.url(:medium) %>
-          </a>
+              <div class="dashboardProfileCard">
+                <a href="/<%= current_user.fullname %>">
+                  <%= image_tag @current_user.avatar.url(:medium) %>
+                </a>
 
-          <div class="user_name">
-            <h3><a><%= current_user.fullname %></a></h3>
-          </div>
-          <div class="nickname">
-            <h6>@<%= current_user.fullname %></h6>
-          </div>
-        </div>
+                <div class="user_name">
+                  <h3><a><%= current_user.fullname %></a></h3>
+                </div>
+                <div class="nickname">
+                  <h6>@<%= current_user.fullname %></h6>
+                </div>
+              </div>
 
-        <div class="user_info">
-          <ul class="list-inline nomargin">
-            <li class="col-md-4 nomargin">
-              <a class="" title="<%= pluralize(@count, 'Tweet') %>" href="/<%= current_user.fullname %>">
-                <span class="span">Tweets</span>
-                <span class="value"><%= @count %></span>
-              </a>
-            </li>
-            <li class="col-md-4 nomargin">
-              <a class="" title="<%= pluralize(@following_user.length, 'Following') %>">
-                <span class="span">Following</span>
-                <span class="value"><%= @following_user.length %></span>
-              </a>
-            </li>
-            <li class="col-md-4 nomargin">
-              <a class="" title="<%= pluralize(@followers_user.length, 'Follower') %>">
-                <span class="span">Followers</span>
-                <span class="value"><%= @followers_user.length %></span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="newTweet">
-        <%= form_tag 'addTweet', :class => 'form-signin form-horizontal' do %>
-            <div class="form-group">
-              <div class="col-md-12">
-                <%= text_area :tweet, params[:tweet], class: 'form-control', rows: '1', id: 'taForTweet',
-                placeholder: 'Compose new Tweet...'%>
+              <div class="user_info">
+                <ul class="list-inline nomargin">
+                  <li class="col-md-4 nomargin">
+                    <a class="" title="<%= pluralize(@count, 'Tweet') %>" href="/<%= current_user.fullname %>">
+                      <span class="span">Tweets</span>
+                      <span class="value"><%= @count %></span>
+                    </a>
+                  </li>
+                  <li class="col-md-4 nomargin">
+                    <a class="" title="<%= pluralize(@following_user.length, 'Following') %>" href="/following">
+                      <span class="span">Following</span>
+                      <span class="value"><%= @following_user.length %></span>
+                    </a>
+                  </li>
+                  <li class="col-md-4 nomargin">
+                    <a class="" title="<%= pluralize(@followers_user.length, 'Follower') %>" href="/followers">
+                      <span class="span">Followers</span>
+                      <span class="value"><%= @followers_user.length %></span>
+                    </a>
+                  </li>
+                </ul>
               </div>
             </div>
+
+            <div class="newTweet">
+              <%= form_tag 'addTweet', :class => 'form-signin form-horizontal' do %>
+                  <div class="form-group">
+                    <div class="col-md-12">
+                      <%= text_area :tweet, params[:tweet], class: 'form-control', rows: '1', id: 'taForTweet' %>
+                    </div>
+                  </div>
+                  <div class="row" style="display: none" id="panelBtnAddTweet">
+                    <div class="col-md-1 col-md-offset-6 left">
+                      <h4 id="counter">140</h4>
+                    </div>
+                    <div class="col-md-1 col-md-offset-1">
+                      <!--<span class="glyphicon glyphicon-star"></span>-->
+                      <%= submit_tag 'Tweet', id: 'btn_addTweet', class: 'btn btn-primary col-sm-offset-8' %>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-md-12 follow" style="margin-top: 10px">
+          <h3 class="nomargin">Trends<small>· <a>Change</a></small></h3>
+            <ul class="trends">
+              <li><a>Ray Rice</a></li>
+              <li><a>#iPhone6</a></li>
+              <li><a>#AppleLive</a></li>
+              <li><a>#russiaviolatedceasefire</a></li>
+              <li><a>Ukraine</a></li>
+              <li><a>С Днем Рождения</a></li>
+              <li><a>#StopRussianAggression</a></li>
+              <li><a>Новороссии</a></li>
+              <li><a>Донбасса</a></li>
+              <li><a>Киеве</a></li>
+            </ul>
+          </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mainTweets">
+          <div class="tweetsHead col-md-12">
+            <h2>Tweets</h2>
+          </div>
+          <div class="content col-md-12">
             <div class="row">
-              <div class="col-md-1 col-md-offset-5 left">
-                <h4 id="counter">140</h4>
-              </div>
-              <div class="col-md-1 col-md-offset-1">
-                <%= submit_tag 'addTweet', id: 'btn_addTweet', class: 'btn btn-primary col-sm-offset-8' %>
-              </div>
-            </div>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="mainTweets col-md-6">
-      <div class="tweetsHead col-md-12">
-        <h2>Tweets</h2>
-      </div>
-
-      <div class="content col-md-12">
-        <div class="row">
-          <div class="col-md-12">
-            <% @tweets.each do |tweet| %>
-                <div class="col-d-12 hover_tweet">
-                  <a class="" href="/<%= tweet.user.fullname %>">
-                    <%= image_tag tweet.user.avatar.url(:medium), class: 'img_tweet' %>
-                    <span class="fullname">
+              <div class="col-md-12">
+                <% @tweets.each do |tweet| %>
+                    <div class="col-d-12 hover_tweet">
+                      <a class="" href="/<%= tweet.user.fullname %>">
+                        <%= image_tag tweet.user.avatar.url(:medium), class: 'img_tweet' %>
+                        <span class="fullname">
                         <b><%= tweet.user.fullname %></b>
                     </span>
-                  </a>
+                      </a>
                   <span class="nickname">
                     <span class="at">@</span><%= tweet.user.fullname %>
                   </span>
@@ -95,107 +112,101 @@
                   <span class="time-ago">
                     <%= time_ago_in_words((Time.now - tweet.created_at).second.from_now) %>
                   </span>
-
-                  <div class="tweet"><%= tweet.tweet %>
-                    <br>
-                    <a><span>Expand</span></a>
-
-                    <div class="tweet_panel_i right">
-                      <ul class="list-inline">
-                        <li><a><img class="reply" src="/img/reply.png"><b>Reply</b></a></li>
-                        <li><a><img class="retweet" src="/img/retweet.png"><b>Retweet</b></a></li>
-                        <li><a><img class="star" src="/img/star.png"><b>Favorite</b></a></li>
-                        <li>
-                          <div>
-                            <div class="dropdown">
-                              <a data-toggle="dropdown">
-                                <img class="points" src="/img/points.png">
-                                <b>More</b>
-                              </a>
-                              <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                                <li><a>Embed Tweet</a></li>
-                                <% if @current_user.id == tweet.user_id %>
-                                    <li><a class="del" id=<%= tweet.id %>>Delete tweet</a></li>
-                                <% end %>
-                              </ul>
-                            </div>
-                          </div>
-                        </li>
-                      </ul>
+                      <div class="tweet"><%= tweet.tweet %>
+                        <br><a><span>Expand</span></a>
+                        <div class="tweet_panel_i right">
+                          <ul class="list-inline">
+                            <li><a><img class="reply" src="/img/reply.png"><b>Reply</b></a></li>
+                            <li><a><img class="retweet" src="/img/retweet.png"><b>Retweet</b></a></li>
+                            <li><a><img class="star" src="/img/star.png"><b>Favorite</b></a></li>
+                            <li>
+                                <div class="dropdown">
+                                  <a data-toggle="dropdown"><img class="points" src="/img/points.png"><b>More</b></a>
+                                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                    <li><a>Embed Tweet</a></li>
+                                    <% if @current_user.id == tweet.user_id %>
+                                        <li><a class="del" id=<%= tweet.id %>>Delete tweet</a></li>
+                                    <% end %>
+                                  </ul>
+                                </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-            <% end %>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
-    </div>
-
-    <div class="follow col-md-3">
-      <h3>Who to follow
-        <small><a>Refresh</a></small>
-        <small><a>View all</a></small>
-      </h3>
-      <%= hidden_field_tag :current_user_id, current_user.id %>
-      <% @users.each do |user| %>
-          <div class="col-md-12 content">
-            <a class="" href="/<%= user.fullname %>">
-              <%= image_tag user.avatar.url(:medium), class: 'img_tweet' %>
-              <div class="whofollow_info clip">
-                <b class="fullname"><%= user.fullname %></b>
+    <div class="col-md-3 nomargin nopadding">
+      <div class="col-md-12 nomargin nopadding">
+        <div class="follow">
+          <h3 class="nomargin">Who to follow
+            <small><a>Refresh</a></small>
+            <small><a>View all</a></small>
+          </h3>
+          <%= hidden_field_tag :current_user_id, current_user.id %>
+          <% @users.each do |user| %>
+              <div class="col-md-12 content">
+                <a class="" href="/<%= user.fullname %>">
+                  <%= image_tag user.avatar.url(:medium), class: 'img_tweet' %>
+                  <div class="whofollow_info clip">
+                    <b class="fullname"><%= user.fullname %></b>
                 <span>
                     <span class="at">@</span><%= user.fullname %>
                 </span>
+                  </div>
+                </a>
+
+                <div>
+                  <button type="button" class="btn btn-default btn-whofollow">
+                    <img src="img/user-addH.png" class="add_user">
+
+                    <div class="">Follow</div>
+                  </button>
+                </div>
               </div>
-            </a>
+          <% end %>
 
-            <div>
-              <button type="button" class="btn btn-default btn-whofollow">
-                <img src="img/user-addH.png" class="add_user">
-
-                <div class="">Follow</div>
-              </button>
+          <div class="row">
+            <div class="col-md-6">
+              <a class="interests-link">
+                Popular accounts
+              </a>
+            </div>
+            <div class="col-md-6">
+              <a class="interests-link">
+                Find friends
+              </a>
             </div>
           </div>
-      <% end %>
-
-      <div class="row">
-        <div class="col-md-6">
-          <a class="interests-link">
-            Popular accounts
-          </a>
-        </div>
-        <div class="col-md-6">
-          <a class="interests-link">
-            Find friends
-          </a>
         </div>
       </div>
-    </div>
-    <div class="col-md-3 follow footerlist">
-      <ul class="list-inline">
-        <li>© 2014 Twitter</li>
-        <li><a class="Footer-link" href="/about">About</a></li>
-        <li><a class="Footer-link" href="//support.twitter.com">Help</a></li>
-        <li><a class="Footer-link" href="/tos">Terms</a></li>
-        <li><a class="Footer-link" href="/privacy">Privacy</a></li>
-        <li><a class="Footer-link" href="//support.twitter.com/articles/20170514">Cookies</a></li>
-        <li><a class="Footer-link" href="//support.twitter.com/articles/20170451">Ads info</a></li>
-        <li><a class="Footer-link" href="//about.twitter.com/press/brand-assets">Brand</a></li>
-        <li><a class="Footer-link" href="https://blog.twitter.com">Blog</a></li>
-        <li><a class="Footer-link" href="http://status.twitter.com">Status</a></li>
-        <li><a class="Footer-link" href="https://about.twitter.com/products">Apps</a></li>
-        <li><a class="Footer-link" href="https://about.twitter.com/careers">Jobs</a></li>
-        <li><a class="Footer-link" href="//ads.twitter.com/start?ref=gl-tw-tw-twitter-advertise">Advertise</a></li>
-        <li><a class="Footer-link" href="https://business.twitter.com">Businesses</a></li>
-        <li><a class="Footer-link" href="//media.twitter.com">Media</a></li>
-        <li><a class="Footer-link" href="//dev.twitter.com">Developers</a></li>
-      </ul>
-    </div>
 
+      <div class="col-md-12 follow footerlist">
+          <ul class="list-inline">
+            <li>© 2014 Twitter</li>
+            <li><a class="Footer-link" href="/about">About</a></li>
+            <li><a class="Footer-link" href="//support.twitter.com">Help</a></li>
+            <li><a class="Footer-link" href="/tos">Terms</a></li>
+            <li><a class="Footer-link" href="/privacy">Privacy</a></li>
+            <li><a class="Footer-link" href="//support.twitter.com/articles/20170514">Cookies</a></li>
+            <li><a class="Footer-link" href="//support.twitter.com/articles/20170451">Ads info</a></li>
+            <li><a class="Footer-link" href="//about.twitter.com/press/brand-assets">Brand</a></li>
+            <li><a class="Footer-link" href="https://blog.twitter.com">Blog</a></li>
+            <li><a class="Footer-link" href="http://status.twitter.com">Status</a></li>
+            <li><a class="Footer-link" href="https://about.twitter.com/products">Apps</a></li>
+            <li><a class="Footer-link" href="https://about.twitter.com/careers">Jobs</a></li>
+            <li><a class="Footer-link" href="//ads.twitter.com/start?ref=gl-tw-tw-twitter-advertise">Advertise</a></li>
+            <li><a class="Footer-link" href="https://business.twitter.com">Businesses</a></li>
+            <li><a class="Footer-link" href="//media.twitter.com">Media</a></li>
+            <li><a class="Footer-link" href="//dev.twitter.com">Developers</a></li>
+          </ul>
+      </div>
+    </div>
+  </div>
   </div>
 </div>
-
-</body>
-</html>

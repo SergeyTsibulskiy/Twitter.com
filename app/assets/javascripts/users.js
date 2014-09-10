@@ -3,10 +3,19 @@ $(document).ready(function () {
     $('#taForTweet').addClass('no-expand');
 
     $('#taForTweet').focusin(function () {
-        $('#taForTweet').attr('rows', '4')
+        $(this).attr('rows', '4');
+        $('#panelBtnAddTweet').attr('style', 'display: block');
+        if ($(this).val().length == 0) {
+            $('#btn_addTweet').attr("disabled", true);
+        }else {
+            $('#btn_addTweet').attr("disabled", false);
+        }
     });
     $('#taForTweet').blur(function () {
-        $('#taForTweet').attr('rows', '1')
+        if ($(this).val().length == 0) {
+            $('#taForTweet').attr('rows', '1');
+            $('#panelBtnAddTweet').attr('style', 'display: none')
+        }
     });
 
     $('a.del').click(function () {
@@ -70,7 +79,7 @@ $(document).ready(function () {
 
         if (count > 139) {
             $('#btn_addTweet').attr("disabled", true);
-        }else {
+        } else {
             $('#btn_addTweet').attr("disabled", false);
         }
     });

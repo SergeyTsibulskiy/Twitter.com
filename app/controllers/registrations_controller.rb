@@ -20,7 +20,7 @@ class RegistrationsController < Devise::RegistrationsController
       if @validatable
         @minimum_password_length = resource_class.password_length.min
       end
-      # redirect_to root_path
+      redirect_to root_path
       # render 'main/index'
 
       # redirect_to('/', with params :error list)

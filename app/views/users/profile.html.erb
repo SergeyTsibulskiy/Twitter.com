@@ -3,13 +3,14 @@
   <div class="container-full">
 
     <div class="profile">
+
       <div class="row head">
       </div>
       <div class="row appContainer">
         <div class="container">
           <ul class="list-inline profileNav">
             <li>
-              <a class="nav" title="<%= pluralize(@tweets.length, 'Tweet') %>">
+              <a class="nav" title="<%= pluralize(@tweets.length, 'Tweet') %>" style="  border-bottom-width: 4px;">
                 <span class="label">Tweets</span>
                 <span class="value"><%= @tweets.length %></span>
               </a>
@@ -52,114 +53,156 @@
         </div>
       </div>
 
-      <div class="container">
-        <div class="row tweets">
-          <div class="avatar">
-            <a href="/Test">
-              <%= image_tag @user.avatar.url(:medium) %>
-            </a>
-          </div>
-          <div class="mainTweets col-md-7 col-md-offset-3 top">
-            <div class="col-md-4 info_about_choice_user">
-              <div class="headU">
-                <h1><%= @user.fullname %></h1>
+      <br/>
+      <br/>
+      <br/>
 
-                <h2 class="">
-                  <a href="/<%= @user.fullname %>">@
-                    <span class="nickname"><%= @user.fullname %></span>
+      <div class="container">
+        <div class="row">
+
+          <div class="col-md-3 nomargin nopadding">
+            <div class="col-md-12" style="top:-180px;">
+
+              <div class="leftPanel">
+                <div class="avatar">
+                  <a href="/Test">
+                    <%= image_tag @user.avatar.url(:medium) %>
                   </a>
+                </div>
+
+                <div class="info_about_choice_user">
+                  <div class="headU">
+                    <h1><%= @user.fullname %></h1>
+
+                    <h2 class="">
+                      <a href="/<%= @user.fullname %>">@
+                        <span class="nickname"><%= @user.fullname %></span>
+                      </a>
                   <span class="follow_status">
                   <% if @followers_user.exists?(:user_id => @user.id, :follow_id => current_user.id) %>
                     follows you
                   <% end %>
                   </span>
-                </h2>
-                <img class="icon_clock" src="/img/clock.png">
-                <span class="">Joined May 2011</span>
-              </div>
-            </div>
-            <div class="tweetsHead col-md-10">
-              <h2>Tweets</h2>
-            </div>
-            <div class="content col-md-10">
-              <% @tweets.each do |tweet| %>
-                  <a class="" href="/<%= tweet.user.fullname %>">
-                    <%= image_tag @user.avatar.url(:thumb), class: 'img_tweet' %>
-                    <span class="">
-                    <b class="fullname"><%= tweet.user.fullname %></b>
-                  </span>
-                  </a>
-                <span class="nickname">
-                    <span class="at">@</span><%= tweet.user.fullname %>
-                </span>
-
-                  <div class="tweet">
-                    <%= tweet.tweet %>
-                    <%= hidden_field_tag :user_id, tweet.user_id %>
-
-                    <div class="tweet_panel">
-
-                      <img class="reply" src="/img/reply.png">
-                      <img class="retweet" src="/img/retweet.png">
-                      <img class="star" src="/img/star.png">
-
-                    <span class="dropdown">
-                        <img class="points" data-toggle="dropdown" src="/img/points.png">
-                      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                        <li><a>Embed Tweet</a></li>
-                        <% if @current_user.id == tweet.user_id %>
-                            <li><a class="del" id=<%= tweet.id %>>Delete tweet</a></li>
-                        <% end %>
-                      </ul>
+                    </h2>
+                    <img class="icon_clock" src="/img/clock.png">
+                    <span>
+                        <%= 'Joined ' + @current_user.created_at.to_s(:my_date) %>
                     </span>
-                    </div>
-                  </div>
-              <% end %>
-            </div>
-          </div>\
-          <div class="col-md-3 whofollow follow">
-            <h3 class="nomargin">Who to follow
-              <small><a>Refresh</a></small>
-              <small><a>View all</a></small>
-            </h3>
-            <%= hidden_field_tag :current_user_id, current_user.id %>
-            <% @users.each do |user| %>
-                <div class="col-md-12 content">
-                  <a class="" href="/<%= user.fullname %>">
-                    <%= image_tag user.avatar.url(:medium), class: 'whofollow_img_tweet' %>
-                    <div class="whofollow_info clip">
-                      <b class="fullname"><%= user.fullname %></b>
-                <span>
-                    <span class="at">@</span><%= user.fullname %>
-                </span>
-                    </div>
-                  </a>
-
-                  <div>
-                    <button type="button" class="btn btn-default btn-whofollow">
-                      <img src="img/user-addH.png" class="add_user">
-
-                      <div class="">Follow</div>
-                    </button>
                   </div>
                 </div>
-            <% end %>
 
-            <div class="row">
-              <div class="col-md-6">
-                <a class="interests-link">
-                  Popular accounts
-                </a>
               </div>
-              <div class="col-md-6">
-                <a class="interests-link">
-                  Find friends
-                </a>
+            </div>
+          </div>
+          <div class="col-md-6  nomargin nopadding">
+            <div class="tweetsHead">
+              <h2>Tweets</h2>
+            </div>
+
+            <div class="content">
+
+                <% @tweets.each do |tweet| %>
+                  <div class="tweet_p nomargin">
+                    <a class="" href="/<%= tweet.user.fullname %>">
+                      <%= image_tag @user.avatar.url(:thumb), class: 'img_tweet' %>
+                      <span class="">
+                        <b class="fullname"><%= tweet.user.fullname %></b>
+                      </span>
+                    </a>
+                    <span class="nickname">
+                        <span class="at">@</span><%= tweet.user.fullname %>
+                    </span>
+
+                    <div>
+                      <%= tweet.tweet %>
+                      <%= hidden_field_tag :user_id, tweet.user_id %>
+
+                      <div class="tweet_panel">
+
+                        <img class="reply" src="/img/reply.png">
+                        <img class="retweet" src="/img/retweet.png">
+                        <img class="star" src="/img/star.png">
+
+                        <span class="dropdown">
+                            <img class="points" data-toggle="dropdown" src="/img/points.png">
+                            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                                <li><a>Embed Tweet</a></li>
+                                <% if @current_user.id == tweet.user_id %>
+                                    <li><a class="del" id=<%= tweet.id %>>Delete tweet</a></li>
+                                <% end %>
+                            </ul>
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                <% end %>
+            </div>
+
+          </div>
+          <div class="col-md-3">
+            <div class="col-md-12 nomargin nopadding">
+              <div class="follow">
+                <h3 class="nomargin">Who to follow
+                  <small><a>Refresh</a></small>
+                  <small><a>View all</a></small>
+                </h3>
+                <%= hidden_field_tag :current_user_id, current_user.id %>
+                <% @users.each do |user| %>
+                    <div class="col-md-12 content">
+                      <a class="" href="/<%= user.fullname %>">
+                        <%= image_tag user.avatar.url(:medium), class: 'whofollow_img_tweet' %>
+                        <div class="whofollow_info clip_p">
+                          <b class="fullname"><%= user.fullname %></b>
+                            <span>
+                                <span class="at">@</span><%= user.fullname %>
+                            </span>
+                        </div>
+                      </a>
+
+                      <div>
+                        <button type="button" class="btn btn-default btn-whofollow">
+                          <img src="img/user-addH.png" class="add_user">
+                          <div class="">Follow</div>
+                        </button>
+                      </div>
+                    </div>
+                <% end %>
+
+                <div class="row">
+                  <div class="col-md-7">
+                    <a class="interests-link">
+                      Popular accounts
+                    </a>
+                  </div>
+                  <div class="col-md-5">
+                    <a class="interests-link">
+                      Find friends
+                    </a>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <div class="col-md-12 follow" style="margin-top: 10px">
+              <h3 class="nomargin">Trends<small>· <a>Change</a></small></h3>
+              <ul class="trends">
+                <li><a>Ray Rice</a></li>
+                <li><a>#iPhone6</a></li>
+                <li><a>#AppleLive</a></li>
+                <li><a>#russiaviolatedceasefire</a></li>
+                <li><a>Ukraine</a></li>
+                <li><a>С Днем Рождения</a></li>
+                <li><a>#StopRussianAggression</a></li>
+                <li><a>Новороссии</a></li>
+                <li><a>Донбасса</a></li>
+                <li><a>Киеве</a></li>
+              </ul>
             </div>
           </div>
         </div>
       </div>
+
     </div>
+
   </div>
 </div>

@@ -1,17 +1,26 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, :except => [:follow, :unfollow, :del_tweet]
   protect_from_forgery
+
+  def render_404
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/404", :layout => false, :status => :not_found }
+      format.xml  { head :not_found }
+      format.any  { head :not_found }
+    end
+  end
 
   def profile
     @user = User.find_by_fullname(params[:user_name])
-    @tweets = @user.tweets.order(:created_at).reverse_order
-    @following_user = Follower.where(:user_id => current_user.id).all
-    @followers_user = Follower.where(:follow_id => current_user.id)
-    @users = User.order('RAND()').limit(3)
+    if(@user.blank?)
+      render_404
+    else
+      @tweets = @user.tweets.order(:created_at).reverse_order
+      @following_user = Follower.where(:user_id => current_user.id).all
+      @followers_user = Follower.where(:follow_id => current_user.id)
+      @users = User.order('RAND()').limit(3)
+    end
   end
-
-  # def configure_permitted_parameters
-  #   devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :fullname) }
-  # end
 
   def index
     @current_user = User.find_by_id(current_user.id)
