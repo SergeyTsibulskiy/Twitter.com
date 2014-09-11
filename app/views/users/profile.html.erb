@@ -86,7 +86,7 @@
                     </h2>
                     <img class="icon_clock" src="/img/clock.png">
                     <span>
-                        <%= 'Joined ' + @current_user.created_at.to_s(:my_date) %>
+                        <%= 'Joined ' + current_user.created_at.to_s(:my_date) %>
                     </span>
                   </div>
                 </div>
@@ -127,7 +127,7 @@
                             <img class="points" data-toggle="dropdown" src="/img/points.png">
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                 <li><a>Embed Tweet</a></li>
-                                <% if @current_user.id == tweet.user_id %>
+                                <% if current_user.id == tweet.user_id %>
                                     <li><a class="del" id=<%= tweet.id %>>Delete tweet</a></li>
                                 <% end %>
                             </ul>

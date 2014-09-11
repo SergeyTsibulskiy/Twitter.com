@@ -21,17 +21,18 @@ $(document).ready(function () {
     $('a.del').click(function () {
         var user_id = $('#current_user_id').val();
         var tweet_id = $(this).attr('id');
-
-        $.ajax({
-            url: "http://localhost:3000/delTweet",
-            method: "DELETE",
-            data: {user_id: user_id, tweet_id: tweet_id},
-            complete: function (msg) {
-                if (msg.responseText == 'deleted') {
-                    $(location).attr('href', $(location).attr('href'));
+        if (confirm("Delete this tweet?")){
+            $.ajax({
+                url: "http://localhost:3000/delTweet",
+                method: "DELETE",
+                data: {user_id: user_id, tweet_id: tweet_id},
+                complete: function (msg) {
+                    if (msg.responseText == 'deleted') {
+                        $(location).attr('href', $(location).attr('href'));
+                    }
                 }
-            }
-        })
+            })
+        }
     });
 
     $('button.btn-follow').click(function () {
