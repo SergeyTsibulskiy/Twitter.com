@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  # before_action :authenticate_user!, :except => [:follow, :unfollow, :del_tweet]
+  before_action :authenticate_user!, :except => [:follow, :unfollow, :del_tweet]
   protect_from_forgery
 
 
