@@ -67,7 +67,7 @@ RSpec.describe UsersController, :type => :controller do
       get :profile, {:user_name => subject.current_user.fullname}
       tweets = assigns(:tweets)
       expect(tweets.length).to be 1
-      delete :del_tweet, {user_id: subject.current_user.id, tweet_id: tweets.first.id}
+      delete :del_tweet, {tweet_id: tweets.first.id}
       expect(response.body).to eql('deleted')
     end
 
@@ -78,32 +78,32 @@ RSpec.describe UsersController, :type => :controller do
       tweets = assigns(:tweets)
       expect(tweets.length).to be 1
 
-      delete :del_tweet, {user_id: subject.current_user.id+1, tweet_id: tweets.first.id}
+      delete :del_tweet, {tweet_id: tweets.first.id+1}
       expect(response.body).to eql('access is denied')
     end
 
     it 'should user follow in other user (+)' do
-      post :follow, {user: subject.current_user.id, follow: @u2.id}
+      post :follow, {follow: @u2.id}
       expect(response.body).to eql('following')
     end
 
     it 'should user not follow in himself (-)' do
-      post :follow, {user: subject.current_user.id, follow: subject.current_user.id}
+      post :follow, {follow: subject.current_user.id}
       expect(response.body).to eql("You can't be followed for herself`")
     end
 
     it 'should user unfollow in other user (+)' do
       create(:follower, user: subject.current_user, follow: @u2)
 
-      delete :unfollow, {user_id: subject.current_user.id, follow_id: @u2.id}
+      delete :unfollow, {follow_id: @u2.id}
       expect(response.body).to eql('deleted')
     end
 
     it 'should user not unfollow of user whom he dont follower (-)' do
       create(:follower, user: subject.current_user, follow: @u2)
 
-      delete :unfollow, {user_id: subject.current_user.id+1, follow_id: @u2}
-      expect(response.body).to eql('access is denied')
+      delete :unfollow, {follow_id: @u3}
+      expect(response.body).to eql('error')
     end
 
     it 'should showing tweets current and following users(+)' do
