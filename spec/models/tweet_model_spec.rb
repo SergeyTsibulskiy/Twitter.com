@@ -10,12 +10,12 @@ RSpec.describe Tweet, :type => :model do
   describe 'Testing model' do
     it 'should save tweet if hi has validation failed (+)' do
       tweet = build(:tweet, tweet: 'Text', user: @user)
-      expect(tweet.save!).to be true
+      expect(tweet).to be_valid
     end
 
     it 'should save tweet if hi has validation failed (-)' do
       tweet = build(:tweet, tweet: '', user: @user)
-      expect(tweet.save).to be false
+      expect(tweet).not_to be_valid
     end
 
   end
