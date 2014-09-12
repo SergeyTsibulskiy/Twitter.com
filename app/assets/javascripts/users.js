@@ -1,5 +1,11 @@
 $(document).ready(function () {
 
+    $.ajaxSetup({
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+        }
+    });
+
     $('#taForTweet').addClass('no-expand');
 
     $('#taForTweet').focusin(function () {
@@ -7,7 +13,7 @@ $(document).ready(function () {
         $('#panelBtnAddTweet').attr('style', 'display: block');
         if ($(this).val().length == 0) {
             $('#btn_addTweet').attr("disabled", true);
-        }else {
+        } else {
             $('#btn_addTweet').attr("disabled", false);
         }
     });
@@ -21,7 +27,7 @@ $(document).ready(function () {
     $('a.del').click(function () {
         var user_id = $('#current_user_id').val();
         var tweet_id = $(this).attr('id');
-        if (confirm("Delete this tweet?")){
+        if (confirm("Delete this tweet?")) {
             $.ajax({
                 url: "http://localhost:3000/delTweet",
                 method: "DELETE",
