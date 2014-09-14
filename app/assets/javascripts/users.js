@@ -6,18 +6,21 @@ $(document).ready(function () {
         }
     });
 
-    $('#taForTweet').addClass('no-expand');
+    var ta_forTweet = $('#taForTweet');
 
-    $('#taForTweet').focusin(function () {
+    ta_forTweet.addClass('no-expand');
+
+    ta_forTweet.focusin(function () {
         $(this).attr('rows', '4');
-        $('#panelBtnAddTweet').attr('style', 'display: block');
+        $('#panelB' +
+            'tnAddTweet').attr('style', 'display: block');
         if ($(this).val().length == 0) {
             $('#btn_addTweet').attr("disabled", true);
         } else {
             $('#btn_addTweet').attr("disabled", false);
         }
     });
-    $('#taForTweet').blur(function () {
+    ta_forTweet.blur(function () {
         if ($(this).val().length == 0) {
             $('#taForTweet').attr('rows', '1');
             $('#panelBtnAddTweet').attr('style', 'display: none')
@@ -25,13 +28,12 @@ $(document).ready(function () {
     });
 
     $('a.del').click(function () {
-        var user_id = $('#current_user_id').val();
         var tweet_id = $(this).attr('id');
         if (confirm("Delete this tweet?")) {
             $.ajax({
                 url: "http://localhost:3000/delTweet",
                 method: "DELETE",
-                data: {user_id: user_id, tweet_id: tweet_id},
+                data: {tweet_id: tweet_id},
                 complete: function (msg) {
                     if (msg.responseText == 'deleted') {
                         $(location).attr('href', $(location).attr('href'));
@@ -42,12 +44,11 @@ $(document).ready(function () {
     });
 
     $('button.btn-follow').click(function () {
-        var user_id = $('#current_user_id').val();
         var following_id = $(this).attr('id');
         $.ajax({
             url: "http://localhost:3000/follow",
             method: "POST",
-            data: {user: user_id, follow: following_id},
+            data: {follow: following_id},
             complete: function (msg) {
 //                alert(msg.responseText);
                 $(location).attr('href', $(location).attr('href'));
@@ -56,12 +57,11 @@ $(document).ready(function () {
     });
 
     $('button.btn-danger').click(function () {
-        var user_id = $('#current_user_id').val();
         var following_id = $(this).attr('id');
         $.ajax({
             url: "http://localhost:3000/unfollow",
             method: "DELETE",
-            data: {user_id: user_id, follow_id: following_id},
+            data: {follow_id: following_id},
             complete: function (msg) {
 //                alert(msg.responseText)
                 $(location).attr('href', $(location).attr('href'));
@@ -69,16 +69,17 @@ $(document).ready(function () {
         })
     });
 
-    $('li.col-md-4').mousemove(function () {
+    var navActiv = $('li.col-md-4');
+
+    navActiv.mousemove(function () {
         $(this).find('a').find('span.span').addClass('hover')
     });
 
-    $('li.col-md-4').mouseout(function () {
+    navActiv.mouseout(function () {
         $(this).find('a').find('span.span').removeClass('hover')
     });
 
-    $('#taForTweet').keyup(function () {
-//        var count = $('#counter').text();
+    ta_forTweet.keyup(function () {
         const len = 139;
         var count = $(this).val().length;
         count--;
@@ -91,35 +92,41 @@ $(document).ready(function () {
         }
     });
 
-    $('img.reply').mousemove(function () {
+
+    var imgReply = $('img.reply');
+    var imgRetweet = $('img.retweet');
+    var imgStar =  $('img.star');
+    var imgPoints = $('img.points');
+
+    imgReply.mousemove(function () {
         $(this).attr('src', '/img/replyH.png')
     });
 
-    $('img.reply').mouseout(function () {
+    imgReply.mouseout(function () {
         $(this).attr('src', '/img/reply.png')
     });
 
-    $('img.retweet').mousemove(function () {
+    imgRetweet.mousemove(function () {
         $(this).attr('src', '/img/retweetH.png')
     });
 
-    $('img.retweet').mouseout(function () {
+    imgRetweet.mouseout(function () {
         $(this).attr('src', '/img/retweet.png')
     });
 
-    $('img.star').mousemove(function () {
+    imgStar.mousemove(function () {
         $(this).attr('src', '/img/starH.png')
     });
 
-    $('img.star').mouseout(function () {
+    imgStar.mouseout(function () {
         $(this).attr('src', '/img/star.png')
-    })
+    });
 
-    $('img.points').mousemove(function () {
+    imgPoints.mousemove(function () {
         $(this).attr('src', '/img/pointsH.png')
     });
 
-    $('img.points').mouseout(function () {
+    imgPoints.mouseout(function () {
         $(this).attr('src', '/img/points.png')
     })
 
