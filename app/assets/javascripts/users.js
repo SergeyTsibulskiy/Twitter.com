@@ -36,6 +36,7 @@ $(document).ready(function () {
                 data: {tweet_id: tweet_id},
                 complete: function (msg) {
                     if (msg.responseText == 'deleted') {
+                        alert('deleted');
                         $(location).attr('href', $(location).attr('href'));
                     }
                 }

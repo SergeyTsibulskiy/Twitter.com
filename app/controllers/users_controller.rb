@@ -9,15 +9,14 @@ class UsersController < ApplicationController
       render_404
     else
       @tweets = @user.tweets.order(:created_at).reverse_order
-      @following_user = Follower.where(:user_id => current_user.id)
-      @followers_user = Follower.where(:follow_id => current_user.id)
+      @following_user = Follower.where(:user_id => @user.id)
+      @followers_user = Follower.where(:follow_id => @user.id)
       @users = User.order('RAND()').limit(3)
     end
   end
 
   def index
-    @current_user = User.find_by_id(current_user.id)
-    my_tweets = @current_user.tweets
+    my_tweets = current_user.tweets
     @count = my_tweets.length
     @users = User.order('RAND()').limit(3)
 
