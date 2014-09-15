@@ -16,9 +16,9 @@
               </a>
             </li>
             <li>
-              <a class="nav" title="<%= pluralize(@following_user.length, 'Following') %>" data-nav="following" href="/following">
+              <a class="nav" title="<%= pluralize(@following_users.length, 'Following') %>" data-nav="following" href="/following">
                 <span class="label">Following</span>
-                <span class="value"><%= @following_user.length %></span>
+                <span class="value"><%= @following_users.length %></span>
               </a>
             </li>
             <li>
@@ -39,7 +39,7 @@
                   </button>
                 </a>
             <% else %>
-                <% if @following_user.exists?(:user_id => current_user.id, :follow_id => @user.id) %>
+                <% if @following_users.exists?(:user_id => current_user.id, :follow_id => @user.id) %>
                     <button class="btn btn-danger btn-follow" id="<%= @user.id %>">
                       <span class="visuallyhidden">Unfollow</span>
                     </button>

@@ -11,4 +11,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   has_many :tweets
+
+  has_many :followers
+
+  scope :randomly, -> {order('RAND()')}
 end

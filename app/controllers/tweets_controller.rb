@@ -8,6 +8,8 @@ class TweetsController < ApplicationController
 
     if @tweet.valid?
       @tweet.save!
+    else
+      render plain 'Error'
     end
 
     redirect_to home_path

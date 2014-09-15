@@ -36,9 +36,9 @@
                     </a>
                   </li>
                   <li class="col-md-4 nomargin">
-                    <a class="" title="<%= pluralize(@following_user.length, 'Following') %>" href="/following">
+                    <a class="" title="<%= pluralize(@following_users.length, 'Following') %>" href="/following">
                       <span class="span">Following</span>
-                      <span class="value"><%= @following_user.length %></span>
+                      <span class="value"><%= @following_users.length %></span>
                     </a>
                   </li>
                   <li class="col-md-4 nomargin">
@@ -55,15 +55,15 @@
               <%= form_for @tweet, :html => {class: 'form-signin form-horizontal'} do |f| %>
                   <div class="form-group">
                     <div class="col-md-12">
-                      <%= f.text_area :tweet, class: 'form-control', rows: '1', id: 'taForTweet' %>
+                      <%= f.text_area :tweet, class: 'form-control', rows: '1', id: 'ta_for_tweet' %>
                     </div>
                   </div>
-                  <div class="row" style="display: none" id="panelBtnAddTweet">
+                  <div class="row" style="display: none" id="panel_btn_add_tweet">
                     <div class="col-md-1 col-md-offset-6 left">
                       <h4 id="counter">140</h4>
                     </div>
                     <div class="col-md-1 col-md-offset-1">
-                      <%= f.submit tweets_path(@tweet), value: 'Tweet',  id: 'btn_addTweet', class: 'btn btn-primary col-sm-offset-8' %>
+                      <%= f.submit tweets_path(@tweet), value: 'Tweet',  id: 'btn_add_tweet', class: 'btn btn-primary col-sm-offset-8' %>
                     </div>
                   </div>
               <% end %>
