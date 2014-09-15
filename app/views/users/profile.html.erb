@@ -22,9 +22,9 @@
               </a>
             </li>
             <li>
-              <a class="nav" title="<%= pluralize(@followers_user.length, 'Follower') %>" href="/followers">
+              <a class="nav" title="<%= pluralize(@followers_users.length, 'Follower') %>" href="/followers">
                 <span class="label">Followers</span>
-                <span class="value"><%= @followers_user.length %></span>
+                <span class="value"><%= @followers_users.length %></span>
               </a>
             </li>
           </ul>
@@ -79,7 +79,7 @@
                         <span class="nickname"><%= @user.fullname %></span>
                       </a>
                   <span class="follow_status">
-                  <% if @followers_user.exists?(:user_id => @user.id, :follow_id => current_user.id) %>
+                  <% if @followers_users.exists?(:user_id => @user.id, :follow_id => current_user.id) %>
                     follows you
                   <% end %>
                   </span>

@@ -9,8 +9,8 @@ class UsersController < ApplicationController
       render_404
     else
       @tweets = @user.tweets.order(:created_at).reverse_order
-      @following_users = Follower.where(:user_id => current_user.id)
-      @followers_user = Follower.where(:follow_id => current_user.id)
+      @following_users = current_user.followers
+      @followers_users = Follower.where(follow_id: current_user.id)
       @users = User.randomly.limit(3)
     end
   end
@@ -22,8 +22,7 @@ class UsersController < ApplicationController
     @users = User.randomly.limit(3)
 
     @following_users = current_user.followers
-    @followers_user = Follower.where(:follow_id => current_user.id)
-
+    @followers_users = Follower.where(follow_id: current_user.id)
 
     @tweets = my_tweets
     if @following_users.any?
