@@ -3,11 +3,13 @@ Rails.application.routes.draw do
 
   get 'home' => 'users#index'
 
+  resources :news
+
   devise_for :users, :controllers => {:registrations => 'registrations'}
 
-  get 'home' => 'users#index', as: 'user_root'
+  resources :tweets
 
-  delete 'delTweet' => 'users#del_tweet'
+  get 'home' => 'users#index', as: 'user_root'
 
   post 'follow' => 'users#follow'
 
@@ -16,8 +18,6 @@ Rails.application.routes.draw do
   get '/:user_name' => 'users#profile'
 
   get 'users/profile'
-
-  post 'addTweet' => 'users#add_tweet'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

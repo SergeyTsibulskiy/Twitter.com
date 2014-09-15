@@ -128,7 +128,7 @@
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                 <li><a>Embed Tweet</a></li>
                                 <% if current_user.id == tweet.user_id %>
-                                    <li><a class="del" id=<%= tweet.id %>>Delete tweet</a></li>
+                                  <li><%= link_to 'Delete tweet', tweet_path(tweet), method: :delete %></li>
                                 <% end %>
                             </ul>
                         </span>

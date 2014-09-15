@@ -10,4 +10,13 @@ class ApplicationController < ActionController::Base
       format.any { head :not_found }
     end
   end
+
+  def render_400
+    respond_to do |format|
+      format.html { render :file => "#{Rails.root}/public/400", :layout => false, :status => 400 }
+      format.js { head :bad_request }
+      format.xml { head :bad_request }
+      format.any { head :bad_request }
+    end
+  end
 end

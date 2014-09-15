@@ -27,23 +27,6 @@ $(document).ready(function () {
         }
     });
 
-    $('a.del').click(function () {
-        var tweet_id = $(this).attr('id');
-        if (confirm("Delete this tweet?")) {
-            $.ajax({
-                url: "http://localhost:3000/delTweet",
-                method: "DELETE",
-                data: {tweet_id: tweet_id},
-                complete: function (msg) {
-                    if (msg.responseText == 'deleted') {
-                        alert('deleted');
-                        $(location).attr('href', $(location).attr('href'));
-                    }
-                }
-            })
-        }
-    });
-
     $('button.btn-follow').click(function () {
         var following_id = $(this).attr('id');
         $.ajax({

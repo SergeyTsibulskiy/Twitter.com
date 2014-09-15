@@ -9,13 +9,14 @@ class UsersController < ApplicationController
       render_404
     else
       @tweets = @user.tweets.order(:created_at).reverse_order
-      @following_user = Follower.where(:user_id => @user.id)
-      @followers_user = Follower.where(:follow_id => @user.id)
+      @following_user = Follower.where(:user_id => current_user.id)
+      @followers_user = Follower.where(:follow_id => current_user.id)
       @users = User.order('RAND()').limit(3)
     end
   end
 
   def index
+    @tweet = Tweet.new
     my_tweets = current_user.tweets
     @count = my_tweets.length
     @users = User.order('RAND()').limit(3)
@@ -35,29 +36,6 @@ class UsersController < ApplicationController
     @tweets.reverse!
 
     render 'users/index'
-  end
-
-  def add_tweet
-    tweet = Tweet.new
-    tweet.user = User.find_by_id(current_user.id)
-    tweet.tweet = params[:tweet][0].html_safe
-
-    if tweet.valid?
-      tweet.save!
-    end
-
-    redirect_to('/home')
-  end
-
-  def del_tweet
-    tweet_id = params[:tweet_id]
-    current_tweet = Tweet.find_by_id(tweet_id)
-    if !current_tweet.nil? and current_tweet.user_id == current_user.id
-    current_tweet.destroy!
-      render json: 'deleted'
-    else
-      render json: 'access is denied'
-    end
   end
 
   def follow

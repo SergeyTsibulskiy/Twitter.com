@@ -52,10 +52,10 @@
             </div>
 
             <div class="newTweet">
-              <%= form_tag 'addTweet', :class => 'form-signin form-horizontal' do %>
+              <%= form_for @tweet, :html => {class: 'form-signin form-horizontal'} do |f| %>
                   <div class="form-group">
                     <div class="col-md-12">
-                      <%= text_area :tweet, params[:tweet], class: 'form-control', rows: '1', id: 'taForTweet' %>
+                      <%= f.text_area :tweet, class: 'form-control', rows: '1', id: 'taForTweet' %>
                     </div>
                   </div>
                   <div class="row" style="display: none" id="panelBtnAddTweet">
@@ -63,7 +63,7 @@
                       <h4 id="counter">140</h4>
                     </div>
                     <div class="col-md-1 col-md-offset-1">
-                      <%= submit_tag 'Tweet', id: 'btn_addTweet', class: 'btn btn-primary col-sm-offset-8' %>
+                      <%= f.submit tweets_path(@tweet), value: 'Tweet',  id: 'btn_addTweet', class: 'btn btn-primary col-sm-offset-8' %>
                     </div>
                   </div>
               <% end %>
@@ -124,7 +124,7 @@
                                   <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
                                     <li><a>Embed Tweet</a></li>
                                     <% if @current_user.id == tweet.user_id %>
-                                        <li><a class="del" id=<%= tweet.id %>>Delete tweet</a></li>
+                                        <li><%= link_to 'Delete tweet', tweet_path(tweet), method: :delete %></li>
                                     <% end %>
                                   </ul>
                                 </div>

@@ -47,40 +47,6 @@ RSpec.describe UsersController, :type => :controller do
       expect(tweets.second).to be_nil
     end
 
-    it 'should add Tweet (+)' do
-      text = []
-      text.push('Test')
-      get :add_tweet, {:tweet => text}
-      expect(subject.current_user.tweets.first.tweet).to eql(text.first)
-    end
-
-    it 'should not add Tweet (-)' do
-      text = []
-      text.push('')
-      get :add_tweet, {:tweet => text}
-      expect(subject.current_user.tweets.first).to be_nil
-    end
-
-    it 'should del Tweet (+)' do
-      create(:tweet, user: subject.current_user)
-
-      get :profile, {:user_name => subject.current_user.fullname}
-      tweets = assigns(:tweets)
-      expect(tweets.length).to be 1
-      delete :del_tweet, {tweet_id: tweets.first.id}
-      expect(response.body).to eql('deleted')
-    end
-
-    it 'should not del Tweet (-)' do
-      create(:tweet, user: subject.current_user)
-
-      get :profile, {:user_name => subject.current_user.fullname}
-      tweets = assigns(:tweets)
-      expect(tweets.length).to be 1
-
-      delete :del_tweet, {tweet_id: tweets.first.id+1}
-      expect(response.body).to eql('access is denied')
-    end
 
     it 'should user follow in other user (+)' do
       post :follow, {follow: @u2.id}
