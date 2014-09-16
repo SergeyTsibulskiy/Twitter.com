@@ -8,11 +8,10 @@ class TweetsController < ApplicationController
 
     if @tweet.valid?
       @tweet.save!
+      redirect_to :back
     else
-      render plain 'Error'
+      render_400
     end
-
-    redirect_to home_path
   end
 
   def destroy

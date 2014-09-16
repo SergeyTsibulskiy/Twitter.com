@@ -12,7 +12,9 @@ class User < ActiveRecord::Base
 
   has_many :tweets
 
-  has_many :followers
+  has_many :followers, :foreign_key => :user_id
+
+  # has_many :myfollowing, :foreign_key => :follow_id
 
   scope :randomly, -> {order('RAND()')}
 end

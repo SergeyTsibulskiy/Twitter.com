@@ -6,18 +6,18 @@ $(document).ready(function () {
         }
     });
 
-    var ta_forTweet = $('#ta_for_tweet');
+    var ta_for_tweet = $('#ta_for_tweet');
 
-    ta_forTweet.addClass('no-expand');
+    ta_for_tweet.addClass('no-expand');
 
-    ta_forTweet.focusin(function () {
+    ta_for_tweet.focusin(function () {
         $(this).attr('rows', '4');
         $('#panel_btn_add_tweet').attr('style', 'display: block');
         var disabled = $(this).val().length == 0;
         $('#btn_add_tweet').attr("disabled", disabled);
     });
 
-    ta_forTweet.blur(function () {
+    ta_for_tweet.blur(function () {
         if ($(this).val().length == 0) {
             $('#ta_for_tweet').attr('rows', '1');
             $('#panel_btn_add_tweet').attr('style', 'display: none')
@@ -50,17 +50,17 @@ $(document).ready(function () {
         })
     });
 
-    var navActive = $('li.col-md-4');
+    var nav_active = $('li.col-md-4');
 
-    navActive.mousemove(function () {
+    nav_active.mousemove(function () {
         $(this).find('a').find('span.span').addClass('hover');
     });
 
-    navActive.mouseout(function () {
+    nav_active.mouseout(function () {
         $(this).find('a').find('span.span').removeClass('hover');
     });
 
-    ta_forTweet.keyup(function () {
+    ta_for_tweet.keyup(function () {
         const max_len_tweet = 139;
         var count = $(this).val().length;
         count--;
@@ -71,40 +71,40 @@ $(document).ready(function () {
     });
 
 
-    var imgReply = $('img.reply');
-    var imgRetweet = $('img.retweet');
-    var imgStar = $('img.star');
-    var imgPoints = $('img.points');
+    var img_reply = $('img.reply');
+    var img_retweet = $('img.retweet');
+    var img_star = $('img.star');
+    var img_points = $('img.points');
 
-    imgReply.mousemove(function () {
+    img_reply.mousemove(function () {
         $(this).attr('src', '/img/replyH.png');
     });
 
-    imgReply.mouseout(function () {
+    img_reply.mouseout(function () {
         $(this).attr('src', '/img/reply.png');
     });
 
-    imgRetweet.mousemove(function () {
+    img_retweet.mousemove(function () {
         $(this).attr('src', '/img/retweetH.png');
     });
 
-    imgRetweet.mouseout(function () {
+    img_retweet.mouseout(function () {
         $(this).attr('src', '/img/retweet.png');
     });
 
-    imgStar.mousemove(function () {
+    img_star.mousemove(function () {
         $(this).attr('src', '/img/starH.png');
     });
 
-    imgStar.mouseout(function () {
+    img_star.mouseout(function () {
         $(this).attr('src', '/img/star.png');
     });
 
-    imgPoints.mousemove(function () {
+    img_points.mousemove(function () {
         $(this).attr('src', '/img/pointsH.png');
     });
 
-    imgPoints.mouseout(function () {
+    img_points.mouseout(function () {
         $(this).attr('src', '/img/points.png');
     });
 
