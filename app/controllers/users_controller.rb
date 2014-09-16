@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     else
       @tweets = @user.tweets.order(:created_at).reverse_order
       @following_users = current_user.followers
-      @followers_users = Follower.where(follow_id: current_user.id)
+      @followers_users = current_user.myfollowing
       @users = User.randomly.limit(3)
     end
   end
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
     @users = User.randomly.limit(3)
 
     @following_users = current_user.followers
-    @followers_users = Follower.where(follow_id: current_user.id)
+    @followers_users = current_user.myfollowing
 
     @tweets = my_tweets
     if @following_users.any?

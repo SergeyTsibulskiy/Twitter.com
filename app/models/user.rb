@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
 
   has_many :followers, :foreign_key => :user_id
 
-  # has_many :myfollowing, :foreign_key => :follow_id
+  has_many :myfollowing, :foreign_key => :follow_id, class_name: 'Follower'
 
   scope :randomly, -> {order('RAND()')}
 end
